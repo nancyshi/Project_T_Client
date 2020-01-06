@@ -27,7 +27,7 @@ var helper = cc.Class({
         //     }
         // },
     },
-
+    
     
 });
 

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.JsonAsset",
+  "_name": "serverConfig",
+  "_objFlags": 0,
+  "_native": "",
+  "json": [
+    {
+      "module": "login",
+      "port": 8888,
+      "ip": "127.0.0.1",
+      "suffix": "login",
+      "messageNames": [
+        "playerId",
+        "requestType"
+      ]
+    },
+    {
+      "module": "dataMgr",
+      "port": 8888,
+      "ip": "127.0.0.1",
+      "suffix": "data",
+      "messageNames": [
+        "playerId",
+        "requestType"
+      ]
+    }
+  ]
+}

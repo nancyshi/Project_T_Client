@@ -108,7 +108,6 @@ cc.Class({
                 message = JSON.stringify(message)
                 networkMgr.sendMessage(message,port,ip,suffix,function(xhr){
                     var response = xhr.responseText
-                    cc.log("response is " + response)
                     response = JSON.parse(response)
                     if (response.type == "login_success") {
                         var playerId = response.playerId

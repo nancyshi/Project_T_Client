@@ -1,0 +1,72 @@
+2020-01-06T06:48:08.111Z - normal: Load ~/.CocosCreator/settings.json
+2020-01-06T06:48:08.145Z - normal: Initializing Asset Database
+2020-01-06T06:48:08.147Z - normal: checking language setting...
+2020-01-06T06:48:08.147Z - normal: Language: zh
+2020-01-06T06:48:08.450Z - success: preview server running at http://localhost:7456
+2020-01-06T06:48:08.462Z - success: protocol editor-framework registered
+2020-01-06T06:48:08.462Z - success: protocol app registered
+2020-01-06T06:48:08.462Z - success: protocol theme registered
+2020-01-06T06:48:08.462Z - success: protocol packages registered
+2020-01-06T06:48:08.462Z - success: protocol uuid registerred
+2020-01-06T06:48:08.463Z - success: protocol db registerred
+2020-01-06T06:48:08.463Z - success: protocol thumbnail registerred
+2020-01-06T06:48:08.463Z - success: protocol unpack registerred
+2020-01-06T06:48:08.463Z - success: protocol disable-commonjs registerred
+2020-01-06T06:48:08.735Z - normal: connected!
+2020-01-06T06:48:08.736Z - normal: Check project /Users/nancy.shi/Documents/Cocos/Project_T_Client
+2020-01-06T06:48:08.737Z - normal: Initializing project /Users/nancy.shi/Documents/Cocos/Project_T_Client
+2020-01-06T06:48:08.754Z - success: adapters loaded
+2020-01-06T06:48:08.758Z - success: asset-db-debugger loaded
+2020-01-06T06:48:08.812Z - success: fb-audience-network loaded
+2020-01-06T06:48:08.832Z - success: fb-live-stream loaded
+2020-01-06T06:48:08.834Z - success: google-play-instant loaded
+2020-01-06T06:48:08.837Z - success: huawei-runtime loaded
+2020-01-06T06:48:08.838Z - success: jkw-adapter loaded
+2020-01-06T06:48:08.839Z - success: jsb-adapter loaded
+2020-01-06T06:48:08.841Z - success: oppo-runtime loaded
+2020-01-06T06:48:08.845Z - success: package-manager loaded
+2020-01-06T06:48:08.846Z - success: qtt-adapter loaded
+2020-01-06T06:48:08.847Z - success: runtime-dev-tools loaded
+2020-01-06T06:48:08.852Z - success: sdkbox loaded
+2020-01-06T06:48:08.855Z - success: ui-kit-preview-extra loaded
+2020-01-06T06:48:08.858Z - success: ui-kit-preview loaded
+2020-01-06T06:48:08.861Z - success: vivo-runtime loaded
+2020-01-06T06:48:08.863Z - success: alipay-minigame loaded
+2020-01-06T06:48:08.913Z - success: assets loaded
+2020-01-06T06:48:08.916Z - success: baidugame-opendata loaded
+2020-01-06T06:48:08.918Z - success: baidugame loaded
+2020-01-06T06:48:08.921Z - success: builder loaded
+2020-01-06T06:48:09.031Z - success: cocos-services loaded
+2020-01-06T06:48:09.035Z - success: console loaded
+2020-01-06T06:48:09.044Z - success: fb-instant-games loaded
+2020-01-06T06:48:09.047Z - success: game-window loaded
+2020-01-06T06:48:09.048Z - success: google-instant-games loaded
+2020-01-06T06:48:09.052Z - success: hierarchy loaded
+2020-01-06T06:48:09.055Z - success: inspector loaded
+2020-01-06T06:48:09.271Z - success: cpk-publish loaded
+2020-01-06T06:48:09.275Z - success: keystore loaded
+2020-01-06T06:48:09.285Z - success: node-library loaded
+2020-01-06T06:48:09.292Z - success: open-recent-items loaded
+2020-01-06T06:48:09.294Z - success: package-asset loaded
+2020-01-06T06:48:09.295Z - success: preferences loaded
+2020-01-06T06:48:09.298Z - success: project-exporter loaded
+2020-01-06T06:48:09.302Z - success: project-importer loaded
+2020-01-06T06:48:09.305Z - success: project-settings loaded
+2020-01-06T06:48:09.316Z - success: qtt-runtime loaded
+2020-01-06T06:48:09.320Z - success: scene loaded
+2020-01-06T06:48:09.321Z - success: simulator-debugger loaded
+2020-01-06T06:48:09.322Z - success: sprite-editor loaded
+2020-01-06T06:48:09.325Z - success: store loaded
+2020-01-06T06:48:09.329Z - success: timeline loaded
+2020-01-06T06:48:09.331Z - success: wechatgame-opendata loaded
+2020-01-06T06:48:09.334Z - success: wechatgame loaded
+2020-01-06T06:48:09.338Z - success: xiaomi-runtime loaded
+2020-01-06T06:48:10.235Z - normal: Initializing Cocos2d
+2020-01-06T06:48:10.502Z - normal: Initializing engine extends
+2020-01-06T06:48:12.311Z - info: Cocos Service load base data!
+2020-01-06T06:48:13.536Z - info: 插件脚本在编辑器中加载时，在最外层用 var 声明的变量将不再做为全局变量。如果不需要在编辑器中加载插件，则直接取消"允许编辑器加载"即可，否则请改用 "window.xx = yy;" 来定义全局变量。 😂
+插件脚本："/Users/nancy.shi/Documents/Cocos/Project_T_Client/assets/scripts/runtime.js"
+所在行："var runtime = (function (exports) {"
+2020-01-06T06:48:17.219Z - normal: Loading packages
+2020-01-06T06:48:17.224Z - normal: Watching packages
+2020-01-06T06:48:17.301Z - normal: Run Application
