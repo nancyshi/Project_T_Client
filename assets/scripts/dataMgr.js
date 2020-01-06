@@ -27,15 +27,14 @@ var dataMgr = cc.Class({
     },
 
     updatePlayerDataFromServer(playerId) {
-        var ip = "127.0.0.1"
-        var port = 8888
-        var suffix = "data"
+
         var networkMgr = require("networkMgr")
+        var msgObj = networkMgr.makeMessageObj("dataModule","queryMessageType")
+        msgObj.message.playerId = playerId
         var self = this
-        var successCallBack = function(xhr) {
+        msgObj.successCallBack = function(xhr) {
             var response = xhr.responseText
-            response = JSON.parse(response)
-            
+            response = JSON.parse(response)  
             if (response.type == "success") {
                 self.playerData = response.playerData
             }
@@ -43,19 +42,23 @@ var dataMgr = cc.Class({
                 //do something for erros
             }
         }
-        var message = {
-            "playerId": playerId,
-            "requestType": "query"
-        }
-        message = JSON.stringify(message)
-        networkMgr.sendMessage(message,port,ip,suffix,successCallBack)
+        networkMgr.sendMessageByMsgObj(msgObj)
     },
     onPlayerDataUpdated () {
         cc.log("now player data is " + JSON.stringify(this.playerData))
     },
 
     commitPlayerDataToServer(dataForCommit) {
+        var networkMgr = require("networkMgr")
+        var msgObj = networkMgr.makeMessageObj("dataModule","commitMessageTyp")
+        msgObj.message.playerId = this.playerData.id
+        if (msgObj.message.playerId == null) {
+            cc.log("no player data")
+            return
+        }
         
+        msgObj.message.commitBody = dataForCommit
+        networkMgr.sendMessageByMsgObj(msgObj)
     }
 });
 

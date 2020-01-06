@@ -32,32 +32,37 @@ var dataMgr = cc.Class({
     },
 
     updatePlayerDataFromServer: function updatePlayerDataFromServer(playerId) {
-        var ip = "127.0.0.1";
-        var port = 8888;
-        var suffix = "data";
+
         var networkMgr = require("networkMgr");
+        var msgObj = networkMgr.makeMessageObj("dataModule", "queryMessageType");
+        msgObj.message.playerId = playerId;
         var self = this;
-        var successCallBack = function successCallBack(xhr) {
+        msgObj.successCallBack = function (xhr) {
             var response = xhr.responseText;
             response = JSON.parse(response);
-
             if (response.type == "success") {
                 self.playerData = response.playerData;
             } else {
                 //do something for erros
             }
         };
-        var message = {
-            "playerId": playerId,
-            "requestType": "query"
-        };
-        message = JSON.stringify(message);
-        networkMgr.sendMessage(message, port, ip, suffix, successCallBack);
+        networkMgr.sendMessageByMsgObj(msgObj);
     },
     onPlayerDataUpdated: function onPlayerDataUpdated() {
         cc.log("now player data is " + JSON.stringify(this.playerData));
     },
-    commitPlayerDataToServer: function commitPlayerDataToServer() {}
+    commitPlayerDataToServer: function commitPlayerDataToServer(dataForCommit) {
+        var networkMgr = require("networkMgr");
+        var msgObj = networkMgr.makeMessageObj("dataModule", "commitMessageTyp");
+        msgObj.message.playerId = this.playerData.id;
+        if (msgObj.message.playerId == null) {
+            cc.log("no player data");
+            return;
+        }
+
+        msgObj.message.commitBody = dataForCommit;
+        networkMgr.sendMessageByMsgObj(msgObj);
+    }
 });
 
 var shareDataMgr = new dataMgr();

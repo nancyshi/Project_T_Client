@@ -41,7 +41,6 @@ cc.Class({
 
     start: function start() {
         var loginMgr = require("loginMgr");
-        loginMgr = new loginMgr();
         loginMgr.login(3);
     }
 }

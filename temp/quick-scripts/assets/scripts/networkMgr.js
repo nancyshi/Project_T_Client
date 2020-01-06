@@ -53,6 +53,51 @@ var Networkmgr = cc.Class({
         var url = "http://" + ip + ":" + port.toString() + "/" + suffix.toString();
         xhr.open("POST", url);
         xhr.send(msg);
+    },
+    makeMessageObj: function makeMessageObj(moduleName, messageTypeName) {
+        var gloableConfig = require("gloableConfig");
+
+        var netWorkMessageConfigs = gloableConfig.netWorkMessageConfigs;
+        var moduleObj = netWorkMessageConfigs[moduleName];
+
+        if (moduleObj != null) {
+            var ip = gloableConfig.basicIp;
+            var port = gloableConfig.basicPort;
+            if (moduleObj.ip != null) {
+                ip = moduleObj.ip;
+            }
+            if (moduleObj.port != null) {
+                port = moduleObj.port;
+            }
+
+            var suffix = moduleObj.suffix;
+
+            var message = moduleObj[messageTypeName];
+            var successCallBack = function successCallBack(xhr) {};
+            var obj = {
+                ip: ip,
+                port: port,
+                suffix: suffix,
+                message: message,
+                successCallBack: successCallBack
+            };
+            return obj;
+        } else {
+            cc.error("no such module name of " + moduleName);
+            return null;
+        }
+    },
+    sendMessageByMsgObj: function sendMessageByMsgObj(msgObj) {
+        var url = "http://" + msgObj.ip + ":" + msgObj.port.toString() + "/" + msgObj.suffix;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status >= 200 && xhr.status < 400) {
+                msgObj.successCallBack(xhr);
+            }
+        };
+        xhr.open("POST", url);
+        var msgForSend = JSON.stringify(msgObj.message);
+        xhr.send(msgForSend);
     }
 });
 

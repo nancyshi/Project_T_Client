@@ -14,8 +14,8 @@ cc._RF.push(module, '94d39yYUJRKLIlaG9r7L5ON', 'gloableConfig', __filename);
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-cc.Class({
-    extends: cc.Component,
+
+var GloableConfig = cc.Class({
 
     properties: {
         // foo: {
@@ -33,17 +33,41 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-    },
+        basicIp: "127.0.0.1",
+        basicPort: 8888,
+        netWorkMessageConfigs: {
+            get: function get() {
+                return {
+                    loginModule: {
+                        suffix: "login",
+                        loginMessageType: {
+                            code: "asfdsfds",
+                            codeType: 3
+                        }
+                    },
 
-    // LIFE-CYCLE CALLBACKS:
+                    dataModule: {
+                        suffix: "data",
+                        queryMessageType: {
+                            playerId: 100000001,
+                            requestType: "query"
+                        },
+                        commitMessageTyp: {
+                            playerId: 100000001,
+                            requestType: "commit",
+                            commitBody: {}
+                        }
+                    }
 
-    // onLoad () {},
+                };
+            }
+        }
+    }
 
-    start: function start() {}
-}
+});
 
-// update (dt) {},
-);
+var gloableConfig = new GloableConfig();
+module.exports = gloableConfig;
 
 cc._RF.pop();
         }

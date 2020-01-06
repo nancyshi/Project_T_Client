@@ -7,11 +7,7 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-var LoginType = {
-    ACCOUNT: 1,
-    WE_CHAT_GAME: 2,
-    DEVICE_ID: 3
-}
+
 
 var GloableConfig = cc.Class({
 
@@ -33,29 +29,37 @@ var GloableConfig = cc.Class({
         // },
         basicIp: "127.0.0.1",
         basicPort: 8888,
-        netWorkMessageConfigs = {
-            loginModule: {
-                suffix: "login",
-                loginMessageType: {
-                    code: "default",
-                    codeType: LoginType.DEVICE_ID
-                }
-            },
-            
-            dataMgrModule: {
-                suffix: "data",
-                queryMessageType: {
-                    playerId: 100000001,
-                    requestType: "query"
-                },
-                commitMessageType: {
-                    playerId: 100000001,
-                    requestType: "commit",
-                    dataDict: {}
+        netWorkMessageConfigs: {
+            get() {
+                return {
+                    loginModule: {
+                        suffix: "login",
+                        loginMessageType: {
+                            code: "asfdsfds",
+                            codeType: 3
+                        }
+                    },
+
+
+                    dataModule: {
+                        suffix: "data",
+                        queryMessageType: {
+                            playerId: 100000001,
+                            requestType: "query"
+                        },
+                        commitMessageTyp: {
+                            playerId: 100000001,
+                            requestType: "commit",
+                            commitBody: {}
+                        }
+                    },
+
+
                 }
             }
         }
     },
+
 
 });
 

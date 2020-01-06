@@ -13,13 +13,9 @@ cc._RF.push(module, '1552bGIYiVCypKdQfaxDM3E', 'loginMgr');
 // Learn life-cycle callbacks:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-var LoginType = {
-    ACCOUNT: 1,
-    WE_CHAT_GAME: 2,
-    DEVICE_ID: 3
-};
 
-cc.Class({
+
+var LoginMgr = cc.Class({
     properties: {
         // foo: {
         //     // ATTRIBUTES:
@@ -46,23 +42,28 @@ cc.Class({
                     this.onPlayerIdSet();
                 }
             }
+        },
+        LoginType: {
+            get: function get() {
+                return {
+                    ACCOUNT: 1,
+                    WE_CHAT_GAME: 2,
+                    DEVICE_ID: 3
+                };
+            }
         }
 
     },
 
-    /**
-     * 
-     * @param {LoginType} loginType 
-     */
     login: function login(loginType) {
-        this._getPlayerId(loginType);
+        this._setPlayerIdFromServer(loginType);
     },
     onPlayerIdSet: function onPlayerIdSet() {
-        this.updatePlayerData(this.playerId);
+        this.updatePlayerDataFromServer(this.playerId);
     },
-    updatePlayerData: function updatePlayerData(playerId) {
+    updatePlayerDataFromServer: function updatePlayerDataFromServer(playerId) {
         var dataMgr = require("dataMgr");
-        dataMgr.updatePlayerData(playerId);
+        dataMgr.updatePlayerDataFromServer(playerId);
     },
     _genarateUUID: function _genarateUUID() {
         var time = cc.sys.now();
@@ -74,53 +75,43 @@ cc.Class({
         uuid = uuid + time.toString();
         return uuid;
     },
+    _setPlayerIdFromServer: function _setPlayerIdFromServer(loginType) {
 
+        var networkMgr = require("networkMgr");
+        var msgObj = networkMgr.makeMessageObj("loginModule", "loginMessageType");
+        msgObj.message.codeType = loginType;
 
-    /**
-     * 
-     * @param {LoginType} loginType 
-     */
-    _getPlayerId: function _getPlayerId(loginType) {
-        var message = null;
         switch (loginType) {
-            case LoginType.ACCOUNT:
+            case this.LoginType.ACCOUNT:
                 break;
-            case LoginType.WE_CHAT_GAME:
+            case this.LoginType.WE_CHAT_GAME:
                 break;
-            case LoginType.DEVICE_ID:
+            case this.LoginType.DEVICE_ID:
                 var deviceId = cc.sys.localStorage.getItem("deviceId");
                 if (deviceId == null) {
                     var uuid = this._genarateUUID();
                     cc.sys.localStorage.setItem("deviceId", uuid);
                     deviceId = uuid;
                 }
-                message = {
-                    "code": deviceId,
-                    "codeType": LoginType.DEVICE_ID
-                };
+                msgObj.message.code = deviceId;
                 break;
             default:
                 cc.log("Login type erro: now it's " + loginType);
         }
-        if (message) {
-            var networkMgr = require("networkMgr");
-            var self = this;
-            cc.loader.loadRes("configs/serverConfig", function (err, res) {
-                var port = res.json[0].port;
-                var ip = res.json[0].ip;
-                var suffix = "login";
-                message = JSON.stringify(message);
-                networkMgr.sendMessage(message, port, ip, suffix, function (xhr) {
-                    var response = xhr.responseText;
-                    response = JSON.parse(response);
-                    if (response.type == "login_success") {
-                        var playerId = response.playerId;
-                        self.playerId = playerId;
-                    } else if (response.type == "login_fail") {}
-                });
-            });
-        }
+        var self = this;
+        msgObj.successCallBack = function (xhr) {
+            var response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response.type == "login_success") {
+                var playerId = response.playerId;
+                self.playerId = playerId;
+            } else if (response.type == "login_fail") {}
+        };
+        networkMgr.sendMessageByMsgObj(msgObj);
     }
 });
+
+var sharedLoginMgr = new LoginMgr();
+module.exports = sharedLoginMgr;
 
 cc._RF.pop();
