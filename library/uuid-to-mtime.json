@@ -480,7 +480,7 @@
     "relativePath": "images/tt.png"
   },
   "ef1a9906-0267-4e91-9d0f-1d7a4cff146a": {
-    "asset": 1578375065194,
+    "asset": 1578381711831,
     "meta": 1578292003119,
     "relativePath": "scripts"
   },
@@ -525,8 +525,38 @@
     "relativePath": "scripts/libs/dataMgr.js"
   },
   "1a56b8dc-5807-4e8c-aa8a-b2ee751c8759": {
-    "asset": 1578381687992,
+    "asset": 1578381711831,
     "meta": 1578381687994,
     "relativePath": "scripts/libs"
+  },
+  "bb1a8352-74c5-40fc-94ad-5d55a143ae5c": {
+    "asset": 1578476437167,
+    "meta": 1578476437173,
+    "relativePath": "scenes/shootScene.fire"
+  },
+  "6fdce5ce-3100-4c29-a430-ff0f0d745ee1": {
+    "asset": 1578474750837,
+    "meta": 1578474750838,
+    "relativePath": "images/shootRes"
+  },
+  "fea01c1e-9a02-4e2b-bc89-29865a700178": {
+    "asset": 1578474844157,
+    "meta": 1578474844172,
+    "relativePath": "images/shootRes/plane.png"
+  },
+  "647d220b-2b73-4b36-8a9f-01e633c1a5d0": {
+    "asset": 1578475207266,
+    "meta": 1578475207305,
+    "relativePath": "images/shootRes/bg.png"
+  },
+  "f6e56c95-b793-431b-b9e7-d44c90854473": {
+    "asset": 1578475268210,
+    "meta": 1578475268211,
+    "relativePath": "scripts/shootScripts"
+  },
+  "a612e63a-ec2c-4075-aa18-f9b8757d22cd": {
+    "asset": 1578476298946,
+    "meta": 1578476301251,
+    "relativePath": "scripts/shootScripts/moveMgr.js"
   }
 }
