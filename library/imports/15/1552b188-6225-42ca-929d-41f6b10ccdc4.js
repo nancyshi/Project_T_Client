@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '1552bGIYiVCypKdQfaxDM3E', 'loginMgr');
-// scripts/loginMgr.js
+// scripts/libs/loginMgr.js
 
 'use strict';
 

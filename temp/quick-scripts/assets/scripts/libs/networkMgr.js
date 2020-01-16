@@ -1,6 +1,6 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/libs/networkMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
 cc._RF.push(module, '26886qZG21CFKSkgIvhUSHl', 'networkMgr', __filename);
-// scripts/networkMgr.js
+// scripts/libs/networkMgr.js
 
 "use strict";
 

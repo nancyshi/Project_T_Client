@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '10be6vQoxhE9rkbWiJhY2u/', 'dataMgr');
-// scripts/dataMgr.js
+// scripts/libs/dataMgr.js
 
 "use strict";
 

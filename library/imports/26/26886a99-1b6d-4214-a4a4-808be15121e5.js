@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '26886qZG21CFKSkgIvhUSHl', 'networkMgr');
-// scripts/networkMgr.js
+// scripts/libs/networkMgr.js
 
 "use strict";
 

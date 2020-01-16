@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'b7b72lA9PpIAbkf8XjoS5lH', 'gestureMgr');
-// scripts/gestureMgr.js
+// scripts/libs/gestureMgr.js
 
 "use strict";
 

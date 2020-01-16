@@ -1,9 +1,3 @@
-"use strict";
-cc._RF.push(module, '94d39yYUJRKLIlaG9r7L5ON', 'gloableConfig');
-// scripts/libs/gloableConfig.js
-
-"use strict";
-
 // Learn cc.Class:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
 //  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
@@ -14,8 +8,8 @@ cc._RF.push(module, '94d39yYUJRKLIlaG9r7L5ON', 'gloableConfig');
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-
-var GloableConfig = cc.Class({
+cc.Class({
+    extends: cc.Component,
 
     properties: {
         // foo: {
@@ -33,40 +27,33 @@ var GloableConfig = cc.Class({
         //         this._bar = value;
         //     }
         // },
-        basicIp: "127.0.0.1",
-        basicPort: 8888,
-        netWorkMessageConfigs: {
-            get: function get() {
-                return {
-                    loginModule: {
-                        suffix: "login",
-                        loginMessageType: {
-                            code: "asfdsfds",
-                            codeType: 3
-                        }
-                    },
+    },
 
-                    dataModule: {
-                        suffix: "data",
-                        queryMessageType: {
-                            playerId: 100000001,
-                            requestType: "query"
-                        },
-                        commitMessageTyp: {
-                            playerId: 100000001,
-                            requestType: "commit",
-                            commitBody: {}
-                        }
-                    }
+    // LIFE-CYCLE CALLBACKS:
 
-                };
-            }
+    // onLoad () {},
+
+    start () {
+        // test
+        let tileMap = this.node.getComponent(cc.TiledMap)
+        let path01 = tileMap.getObjectGroup("path01")
+        var pathPoints = path01.getObjects()
+
+        for (var index = 0; index < pathPoints.length; index++) {
+
+            var onePoint = pathPoints[index]
+            
         }
+        
+
+
+    },
+
+    positionInPixToTile(x,y,tileSize) {
+        tileX = Math.floor ( x / tileSize.width)
+        tileY = Math.floor (y / tileSize.height)
+
+        return cc.v2(tileX,tileY)
     }
-
+    // update (dt) {},
 });
-
-var gloableConfig = new GloableConfig();
-module.exports = gloableConfig;
-
-cc._RF.pop();
