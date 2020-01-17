@@ -27,6 +27,21 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        pathPoints: [],
+        state: {
+            get() {
+                return this._state
+            },
+            set(value) {
+                this._state = value
+            }
+        },
+        health: 100,
+        moveSpeed: 1
+        //STATE ENUM
+        //0 default , do nothing
+        //1 go to target
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -34,26 +49,12 @@ cc.Class({
     // onLoad () {},
 
     start () {
-        // test
-        let tileMap = this.node.getComponent(cc.TiledMap)
-        let path01 = tileMap.getObjectGroup("path01")
-        var pathPoints = path01.getObjects()
-
-        for (var index = 0; index < pathPoints.length; index++) {
-
-            var onePoint = pathPoints[index]
-            
-        }
-        
-
 
     },
 
-    positionInPixToTile(x,y,tileSize) {
-        tileX = Math.floor ( x / tileSize.width)
-        tileY = Math.floor (y / tileSize.height)
-
-        return cc.v2(tileX,tileY)
-    }
-    // update (dt) {},
+    update (dt) {
+        if (this.state == 1) {
+            
+        }
+    },
 });
