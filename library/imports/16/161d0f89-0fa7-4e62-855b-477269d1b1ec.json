@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "monstor_lvpang",
+    "texture": "6430dc12-8903-4e7e-8964-7741a6b52875",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      63,
+      69
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      63,
+      69
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

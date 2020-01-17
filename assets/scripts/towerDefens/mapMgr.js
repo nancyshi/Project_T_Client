@@ -24,7 +24,17 @@ cc.Class({
 
     onLoad () {
         this.initProperties()
+        //for a test
+        var baseLinePoints = this.pathes["testPath"]
+        var p1 = baseLinePoints[0]
+        var p2 = baseLinePoints[1]
+        var pointPara = cc.v2(0,0)
+        var givenPoint = p1
+        var result = this.getCorrespondingPointInParraline(p1,p2,pointPara,givenPoint)
+        var result1 = this.getCorrespondingPointInParraline(p1,p2,pointPara,p2)
+
         
+
     },
 
     start () {
@@ -64,6 +74,39 @@ cc.Class({
         var resultx = mapOrigin.x + x
         var resulty = mapOrigin.y + y
         return cc.v2(resultx,resulty)
+    },
+
+    getCorrespondingPointInParraline(point1,point2,pointPara,givenPointInBaseLine) {
+        var x1 = point1.x
+        var y1 = point1.y
+        var x2 = point2.x
+        var y2 = point2.y
+        var xp = pointPara.x
+        var yp = pointPara.y
+        var x = givenPointInBaseLine.x
+        var y = givenPointInBaseLine.y
+        var resultx = null
+        var resulty = null
+        if (x2 == x1) {
+            resultx = xp
+            resulty = y
+            
+        }
+        else if (y1 == y2) {
+            resultx = x
+            resulty = yp
+            
+        }
+        else {
+            var k = (y2 - y1) / (x2 - x1)
+            var p = yp - k * xp
+            var v = y + (1 / k) * x
+            resultx = (v - p) / (k + (1 / k))
+            resulty = k * resultx + p
+        }
+        if (resultx != null && resulty != null) {
+            return cc.v2(resultx,resulty)
+        }
     }
 
     // update (dt) {},
