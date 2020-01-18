@@ -27,7 +27,7 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        pathPoints: [],
+        basePathPoints: [],
         state: {
             get() {
                 return this._state
@@ -49,7 +49,7 @@ cc.Class({
     // onLoad () {},
 
     start () {
-
+        
     },
 
     update (dt) {
@@ -57,4 +57,8 @@ cc.Class({
             
         }
     },
+
+    calculatePathPoints () {
+        
+    }
 });

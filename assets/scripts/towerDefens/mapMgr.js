@@ -24,16 +24,10 @@ cc.Class({
 
     onLoad () {
         this.initProperties()
-        //for a test
-        var baseLinePoints = this.pathes["testPath"]
-        var p1 = baseLinePoints[0]
-        var p2 = baseLinePoints[1]
-        var pointPara = cc.v2(0,0)
-        var givenPoint = p1
-        var result = this.getCorrespondingPointInParraline(p1,p2,pointPara,givenPoint)
-        var result1 = this.getCorrespondingPointInParraline(p1,p2,pointPara,p2)
-
-        
+        //have a test of monstor
+        var testMonstor = cc.find("Canvas/monstor_lvpang")
+        var monstorMgr = testMonstor.getComponent("monstorMgr")
+        monstorMgr.basePathPoints = this.pathes["testPath"]
 
     },
 
@@ -106,6 +100,9 @@ cc.Class({
         }
         if (resultx != null && resulty != null) {
             return cc.v2(resultx,resulty)
+        }
+        else {
+            return null
         }
     }
 

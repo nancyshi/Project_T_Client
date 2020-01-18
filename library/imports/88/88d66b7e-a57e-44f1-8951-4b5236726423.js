@@ -33,7 +33,7 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        pathPoints: [],
+        basePathPoints: [],
         state: {
             get: function get() {
                 return this._state;
