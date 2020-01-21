@@ -29,14 +29,58 @@ cc.Class({
                 if (value == 2) {
                     this.onReachFinalTarget();
                 }
+                if (value == 3) {
+                    this.onDie();
+                }
             }
             //STATE ENUM
             //0 default , do nothing
             //1 go to target
             //2 reach final target
+            //3 die
 
         },
-        health: 100,
+        maxHealth: {
+            get: function get() {
+                if (this._maxHeath == null) {
+                    this._maxHeath = 100;
+                    return this._maxHeath;
+                } else {
+                    return this._maxHeath;
+                }
+            },
+            set: function set(value) {
+                this._maxHeath = value;
+                var processBar = this.node.getChildByName("heathProcessBar").getComponent(cc.ProgressBar);
+                processBar.progress = this.health / value;
+            }
+        },
+        health: {
+            get: function get() {
+                if (this._heath == null) {
+                    this._heath = 100;
+                    return this._heath;
+                } else {
+                    return this._heath;
+                }
+            },
+            set: function set(value) {
+                this._heath = value;
+                var processBar = this.node.getChildByName("heathProcessBar").getComponent(cc.ProgressBar);
+                processBar.progress = value / this.maxHealth;
+            }
+        },
+        isHeathBarHidden: {
+            get: function get() {
+                return this._isHeathBarHidden;
+            },
+            set: function set(value) {
+                this._isHeathBarHidden = value;
+                var heathBarNode = this.node.getChildByName("heathProcessBar");
+
+                heathBarNode.active = value;
+            }
+        },
         moveSpeed: 100,
 
         target: null,
@@ -55,6 +99,9 @@ cc.Class({
         var t = this.getDisOfTwoPoint(this.node.position, this.target) / this.moveSpeed;
         this.vx = (this.target.x - this.node.x) / t;
         this.vy = (this.target.y - this.node.y) / t;
+
+        this.maxHealth = 100;
+        this.health = 100;
     },
     update: function update(dt) {
         if (this.state == 1) {
@@ -92,7 +139,43 @@ cc.Class({
         var temp = (p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y);
         return Math.sqrt(temp);
     },
-    onReachFinalTarget: function onReachFinalTarget() {}
+    onReachFinalTarget: function onReachFinalTarget() {
+        this.node.removeFromParent();
+        var mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr");
+        var temp = null;
+        for (var index in mapMgr.monstors) {
+            if (this.node == mapMgr.monstors[index]) {
+                temp = index;
+                break;
+            }
+        }
+        if (temp != null) {
+            mapMgr.monstors.splice(index, 1);
+        }
+    },
+    onDie: function onDie() {
+        this.node.removeFromParent();
+        var mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr");
+        var temp = null;
+        for (var index in mapMgr.monstors) {
+            if (this.node == mapMgr.monstors[index]) {
+                temp = index;
+                break;
+            }
+        }
+        if (temp != null) {
+            mapMgr.monstors.splice(index, 1);
+        }
+    },
+    getHurt: function getHurt(hurtNum) {
+        var temp = this.health - hurtNum;
+        if (temp <= 0) {
+            this.health = 0;
+            this.state = 3;
+        } else {
+            this.health = temp;
+        }
+    }
 });
 
 cc._RF.pop();

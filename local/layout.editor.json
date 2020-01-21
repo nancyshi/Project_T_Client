@@ -5,10 +5,10 @@
       "main": true,
       "url": "app://editor/index.html",
       "windowType": "dockable",
-      "x": 50,
-      "y": 23,
-      "width": 1390,
-      "height": 877,
+      "x": 585,
+      "y": 138,
+      "width": 1711,
+      "height": 1200,
       "layout": {
         "children": [
           {
@@ -129,7 +129,8 @@
       "panels": [
         "preferences"
       ]
-    }
+    },
+    "worker": {}
   },
   "panels": {
     "preferences": {

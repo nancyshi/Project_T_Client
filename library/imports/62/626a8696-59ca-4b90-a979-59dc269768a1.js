@@ -23,7 +23,9 @@ cc.Class({
         tileSize: cc.Size,
         mapSizeInPix: cc.Size,
         roadLayer: cc.TiledLayer,
-        pathes: null
+        pathes: null,
+
+        monstors: []
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -35,6 +37,7 @@ cc.Class({
         var monstorMgr = testMonstor.getComponent("monstorMgr");
         monstorMgr.basePathPoints = this.pathes["testPath"];
         monstorMgr.state = 1;
+        this.monstors.push(testMonstor);
     },
     start: function start() {},
     initProperties: function initProperties() {

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "health_bar_hurt",
+    "texture": "e8a9082a-4f6d-4178-82e8-ddb5a10feccf",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      53,
+      6
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      53,
+      6
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
