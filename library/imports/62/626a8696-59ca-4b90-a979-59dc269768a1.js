@@ -34,6 +34,7 @@ cc.Class({
         var testMonstor = cc.find("Canvas/monstor_lvpang");
         var monstorMgr = testMonstor.getComponent("monstorMgr");
         monstorMgr.basePathPoints = this.pathes["testPath"];
+        monstorMgr.state = 1;
     },
     start: function start() {},
     initProperties: function initProperties() {
@@ -95,6 +96,8 @@ cc.Class({
         }
         if (resultx != null && resulty != null) {
             return cc.v2(resultx, resulty);
+        } else {
+            return null;
         }
     }
 

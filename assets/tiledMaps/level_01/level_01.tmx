@@ -47,7 +47,7 @@
  </layer>
  <objectgroup color="#ff0000" id="3" name="pathes">
   <object id="40" name="testPath" x="0" y="641.399">
-   <polyline points="0,0 1920,-1.39942"/>
+   <polyline points="0,0 1315.51,-4.11056 1332.13,4.78663 1339.8,21.3705 1339.32,459.839"/>
   </object>
  </objectgroup>
 </map>

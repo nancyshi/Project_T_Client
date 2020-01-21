@@ -28,7 +28,7 @@ cc.Class({
         var testMonstor = cc.find("Canvas/monstor_lvpang")
         var monstorMgr = testMonstor.getComponent("monstorMgr")
         monstorMgr.basePathPoints = this.pathes["testPath"]
-
+        monstorMgr.state = 1
     },
 
     start () {
