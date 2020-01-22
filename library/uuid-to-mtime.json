@@ -560,7 +560,7 @@
     "relativePath": "scripts/test.js"
   },
   "4da132ac-3e44-4b85-a6a7-f776eb71d32b": {
-    "asset": 1579617779749,
+    "asset": 1579618539644,
     "meta": 1579617779749,
     "relativePath": "scripts/towerDefens"
   },
@@ -585,7 +585,7 @@
     "relativePath": "tiledMaps/level_01/testSheet.png"
   },
   "e351350c-e0f9-4197-a2ca-903d671b93f6": {
-    "asset": 1579617779743,
+    "asset": 1579626968881,
     "meta": 1579617779742,
     "relativePath": "images/towerDefenseRes"
   },

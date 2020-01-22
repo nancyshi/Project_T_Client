@@ -18,23 +18,23 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 372,
+                "height": 523.515625,
                 "type": "panel",
-                "width": 224
+                "width": 275.953125
               },
               {
                 "active": 0,
                 "children": [
                   "assets"
                 ],
-                "height": 421,
+                "height": 592.484375,
                 "type": "panel",
-                "width": 224
+                "width": 275.953125
               }
             ],
-            "height": 796,
+            "height": 1119,
             "type": "dock-v",
-            "width": 224
+            "width": 275.953125
           },
           {
             "children": [
@@ -45,23 +45,23 @@
                     "children": [
                       "scene"
                     ],
-                    "height": 421,
+                    "height": 592.484375,
                     "type": "panel",
-                    "width": 540.984375
+                    "width": 666.921875
                   },
                   {
                     "active": 0,
                     "children": [
                       "node-library"
                     ],
-                    "height": 421,
+                    "height": 592.484375,
                     "type": "panel",
-                    "width": 285
+                    "width": 351.34375
                   }
                 ],
-                "height": 421,
+                "height": 592.484375,
                 "type": "dock-h",
-                "width": 828.984375
+                "width": 1021.265625
               },
               {
                 "active": 0,
@@ -70,14 +70,14 @@
                   "timeline",
                   "game-window"
                 ],
-                "height": 372,
+                "height": 523.515625,
                 "type": "panel",
-                "width": 828.984375
+                "width": 1021.265625
               }
             ],
-            "height": 796,
+            "height": 1119,
             "type": "dock-v",
-            "width": 828.984375
+            "width": 1021.265625
           },
           {
             "active": 0,
@@ -85,9 +85,9 @@
               "inspector",
               "cocos-services"
             ],
-            "height": 796,
+            "height": 1119,
             "type": "panel",
-            "width": 331
+            "width": 407.765625
           }
         ],
         "type": "dock-h"
@@ -129,8 +129,7 @@
       "panels": [
         "preferences"
       ]
-    },
-    "worker": {}
+    }
   },
   "panels": {
     "preferences": {

@@ -67,7 +67,31 @@ cc.Class({
     },
     attackOneMonstor(monstor) {
         this.canAttack = false
-        var monstorMgr = monstor.getComponent("monstorMgr")
-        monstorMgr.getHurt(this.hurt)
+        if (this.hurtRange == -1) {
+            var monstorMgr = monstor.getComponent("monstorMgr")
+            monstorMgr.getHurt(this.hurt)
+        }
+        else {
+            var monstorsForHurt = []
+            for (var index in this.monstors) {
+                var oneMonstor = this.monstors[index]
+                if (oneMonstor == monstor) {
+                    continue
+                }
+                else {
+                    if (this.getDisOfTwoPoint(oneMonstor.position,monstor.position) <= this.hurtRange) {
+                        monstorsForHurt.push(oneMonstor)
+                    }
+                }
+            }
+
+            if (monstorsForHurt.length > 0) {
+                for (var index in monstorsForHurt) {
+                    var oneMonstor = monstorsForHurt[index]
+                    var monstorMgr = oneMonstor.getComponent("monstorMgr")
+                    monstorMgr.getHurt(this.hurt)
+                }
+            }
+        }
     }
 });

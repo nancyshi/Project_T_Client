@@ -23,7 +23,7 @@ cc.Class({
                 if (value == 2) {
                     this.onReachFinalTarget()
                 }
-                if (value == 3) {
+                else if (value == 3) {
                     this.onDie()
                 }
             }
@@ -32,6 +32,7 @@ cc.Class({
         //1 go to target
         //2 reach final target
         //3 die
+        //4 battle
         },
         maxHealth: {
             get() {
@@ -81,7 +82,15 @@ cc.Class({
         target: null,
         vx: null,
         vy: null,
-        targetIndex: 1
+        targetIndex: 1,
+
+        //battle properties
+        hurt: 10,
+        hurtRange: -1,
+        hurtDelta: 0.5,
+        hurtType: 1, // while 1 indicate physical ,and 2 indicate magic
+        physicalDefense: 2,
+        magicDefense: 0
     },
 
     // LIFE-CYCLE CALLBACKS:
