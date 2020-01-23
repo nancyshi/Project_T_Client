@@ -25,7 +25,8 @@ cc.Class({
         roadLayer: cc.TiledLayer,
         pathes: null,
 
-        monstors: []
+        monstors: [],
+        soldiers: []
     },
 
     // LIFE-CYCLE CALLBACKS:

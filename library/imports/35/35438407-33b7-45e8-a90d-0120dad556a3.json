@@ -79,13 +79,13 @@
         "__id__": 14
       },
       {
-        "__id__": 22
+        "__id__": 23
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 25
+        "__id__": 26
       }
     ],
     "_prefab": null,
@@ -175,7 +175,7 @@
       "array": [
         0,
         0,
-        476.3139720814413,
+        474.5819212738724,
         0,
         0,
         0,
@@ -575,6 +575,7 @@
     "roadLayer": null,
     "pathes": null,
     "monstors": [],
+    "soldiers": [],
     "_id": "22IX1JoShDxa1HPhGLLhwS"
   },
   {
@@ -596,6 +597,9 @@
       },
       {
         "__id__": 21
+      },
+      {
+        "__id__": 22
       }
     ],
     "_prefab": null,
@@ -658,7 +662,7 @@
         "__id__": 16
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 18
@@ -874,7 +878,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "161d0f89-0fa7-4e62-855b-477269d1b1ec"
+      "__uuid__": "7f2771a8-c365-47b3-941a-0bd7be06643b"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -887,7 +891,9 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": null,
+    "_atlas": {
+      "__uuid__": "e0249935-0ec7-45f0-a202-e73c076185b6"
+    },
     "_id": "75d2O16LtIzbbmvFj+TDyg"
   },
   {
@@ -904,7 +910,41 @@
     "vx": null,
     "vy": null,
     "targetIndex": 1,
+    "mapMgr": null,
+    "hurt": 10,
+    "attackRange": 10,
+    "hurtRange": -1,
+    "hurtDelta": 0.5,
+    "hurtType": 1,
+    "physicalDefense": 2,
+    "magicDefense": 0,
+    "currentEnmy": null,
     "_id": "ccPNR4O1FMeYQdMBtbfXT3"
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 14
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "b90acf53-c0da-4270-86c4-3094c45856c2"
+    },
+    "_clips": [
+      {
+        "__uuid__": "5be06859-a255-4c52-87b6-ed5ab1e79397"
+      },
+      {
+        "__uuid__": "0e1f542b-801d-4e10-8d0c-544b6c38405f"
+      },
+      {
+        "__uuid__": "b90acf53-c0da-4270-86c4-3094c45856c2"
+      }
+    ],
+    "playOnLoad": false,
+    "_id": "95xZPU8DlCqIm5uvZJKG5d"
   },
   {
     "__type__": "cc.Node",
@@ -917,10 +957,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 23
+        "__id__": 24
       },
       {
-        "__id__": 24
+        "__id__": 25
       }
     ],
     "_prefab": null,
@@ -976,7 +1016,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 22
+      "__id__": 23
     },
     "_enabled": true,
     "_materials": [
@@ -1008,13 +1048,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 22
+      "__id__": 23
     },
     "_enabled": true,
     "hurt": 10,
     "hurtDelta": 1,
     "hurtRange": -1,
     "attackRange": 500,
+    "hurtType": 1,
     "monstors": null,
     "_id": "aahGzwq+RK54FiWy3KvikU"
   },

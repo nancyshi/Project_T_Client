@@ -595,8 +595,8 @@
     "relativePath": "images/towerDefenseRes/monstor_lvpang.png"
   },
   "35438407-33b7-45e8-a90d-0120dad556a3": {
-    "asset": 1579629404442,
-    "meta": 1579629404448,
+    "asset": 1579805429061,
+    "meta": 1579805429067,
     "relativePath": "scenes/towerDefenseScene.fire"
   },
   "4b2a3f34-58cc-42cf-8652-af7e69e4b6eb": {
@@ -614,24 +614,64 @@
     "meta": 1579620325053,
     "relativePath": "images/towerDefenseRes/health_bar_hurt.png"
   },
-  "626a8696-59ca-4b90-a979-59dc269768a1": {
-    "asset": 1579623006808,
-    "meta": 1579623025392,
-    "relativePath": "scripts/towerDefens/mapMgr.js"
-  },
   "28cb85ad-ce53-4cae-a592-a9223efbf8d7": {
     "asset": 1579626968880,
     "meta": 1579626968901,
     "relativePath": "images/towerDefenseRes/tower.png"
   },
+  "a06d5628-7d0d-4e08-99c1-9c6e70ce0c6c": {
+    "asset": 1579772321896,
+    "meta": 1579772321897,
+    "relativePath": "images/towerDefenseRes/monstors"
+  },
+  "9606ffae-8a69-4a6a-94d1-80064ee98d8a": {
+    "asset": 1579772331743,
+    "meta": 1579772331743,
+    "relativePath": "images/towerDefenseRes/monstors/lvpang"
+  },
+  "626a8696-59ca-4b90-a979-59dc269768a1": {
+    "asset": 1579801526337,
+    "meta": 1579801832327,
+    "relativePath": "scripts/towerDefens/mapMgr.js"
+  },
+  "319d9465-e387-4f3e-bcac-cbaf61de9e99": {
+    "asset": 1579801335198,
+    "meta": 1579801832372,
+    "relativePath": "scripts/towerDefens/soldierMgr.js"
+  },
+  "e0249935-0ec7-45f0-a202-e73c076185b6": {
+    "asset": 1579802818224,
+    "meta": 1579802818281,
+    "relativePath": "images/towerDefenseRes/monstors/lvpang/monstor_lvpang.plist"
+  },
+  "5773cd19-c9bd-437d-8656-d823c0e294f6": {
+    "asset": 1579802818224,
+    "meta": 1579802818267,
+    "relativePath": "images/towerDefenseRes/monstors/lvpang/monstor_lvpang.png"
+  },
+  "b90acf53-c0da-4270-86c4-3094c45856c2": {
+    "asset": 1579803514885,
+    "meta": 1579803514888,
+    "relativePath": "images/towerDefenseRes/monstors/lvpang/walk.anim"
+  },
+  "0e1f542b-801d-4e10-8d0c-544b6c38405f": {
+    "asset": 1579803631752,
+    "meta": 1579803631757,
+    "relativePath": "images/towerDefenseRes/monstors/lvpang/attack.anim"
+  },
+  "5be06859-a255-4c52-87b6-ed5ab1e79397": {
+    "asset": 1579803640393,
+    "meta": 1579803640397,
+    "relativePath": "images/towerDefenseRes/monstors/lvpang/die.anim"
+  },
   "88d66b7e-a57e-44f1-8951-4b5236726423": {
-    "asset": 1579627468321,
-    "meta": 1579627468827,
+    "asset": 1579805393065,
+    "meta": 1579805402564,
     "relativePath": "scripts/towerDefens/monstorMgr.js"
   },
   "ff21e385-6849-4b5e-be86-fd7de0157bfa": {
-    "asset": 1579629399406,
-    "meta": 1579629403446,
+    "asset": 1579805401845,
+    "meta": 1579805402565,
     "relativePath": "scripts/towerDefens/towerMgr.js"
   }
 }

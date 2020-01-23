@@ -1,0 +1,98 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "monstor_lvpang.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "1_enemies_1_ATTACK_000": {
+      "__uuid__": "7f2771a8-c365-47b3-941a-0bd7be06643b"
+    },
+    "1_enemies_1_ATTACK_001": {
+      "__uuid__": "1fb67dcf-f6d2-4814-9284-97b1e84256b2"
+    },
+    "1_enemies_1_ATTACK_002": {
+      "__uuid__": "623e5dc1-6df0-4cab-9fdd-32f436435261"
+    },
+    "1_enemies_1_ATTACK_003": {
+      "__uuid__": "c86cd411-c7a7-49ea-a729-dd97d488995c"
+    },
+    "1_enemies_1_ATTACK_004": {
+      "__uuid__": "400efbd7-c4eb-4138-bbb2-2bd744657f15"
+    },
+    "1_enemies_1_ATTACK_005": {
+      "__uuid__": "f5bc311d-3e87-4e28-882d-b4aeee720ff4"
+    },
+    "1_enemies_1_ATTACK_006": {
+      "__uuid__": "dd5d7179-80e2-4aa9-adf2-c86e044424a3"
+    },
+    "1_enemies_1_ATTACK_007": {
+      "__uuid__": "8e6445b8-c904-4f30-ab99-62ccad249fca"
+    },
+    "1_enemies_1_ATTACK_008": {
+      "__uuid__": "5ead268e-bbb3-4890-a98d-632e54fbb3b1"
+    },
+    "1_enemies_1_ATTACK_009": {
+      "__uuid__": "b5fdfeb0-f383-4ef1-86c6-251a824024e0"
+    },
+    "1_enemies_1_DIE_000": {
+      "__uuid__": "fa48fd8c-6374-46fb-afb4-7abca2b6e6bf"
+    },
+    "1_enemies_1_DIE_001": {
+      "__uuid__": "70bbfba7-b3c3-4b4f-b180-76477bc4d17c"
+    },
+    "1_enemies_1_DIE_002": {
+      "__uuid__": "0af62b20-ad96-4462-a34c-8a4fa967402d"
+    },
+    "1_enemies_1_DIE_003": {
+      "__uuid__": "7a49aed4-aa04-4a73-a032-5dfddb9ba992"
+    },
+    "1_enemies_1_DIE_004": {
+      "__uuid__": "693c59db-dc43-48dc-a147-1d1d09bd85cc"
+    },
+    "1_enemies_1_DIE_005": {
+      "__uuid__": "ad9d2f9e-7a83-4a33-9836-688583b3d49f"
+    },
+    "1_enemies_1_DIE_006": {
+      "__uuid__": "52972e88-deca-4b2e-a7ba-0d56eb9b7064"
+    },
+    "1_enemies_1_DIE_007": {
+      "__uuid__": "11b03330-7ddc-4fc6-af19-5524513792af"
+    },
+    "1_enemies_1_DIE_008": {
+      "__uuid__": "31c71ee2-9069-4ce6-9e95-cddc3084f466"
+    },
+    "1_enemies_1_DIE_009": {
+      "__uuid__": "3f010181-27f3-4813-810e-8c4a5e93e3a6"
+    },
+    "1_enemies_1_WALK_000": {
+      "__uuid__": "a8cf8e7e-5450-4b37-bac3-6d7276205709"
+    },
+    "1_enemies_1_WALK_001": {
+      "__uuid__": "7c260e5a-ccb5-4760-97be-053e1e3a430d"
+    },
+    "1_enemies_1_WALK_002": {
+      "__uuid__": "176f89b9-9551-44ef-a452-29dfe30f2ba0"
+    },
+    "1_enemies_1_WALK_003": {
+      "__uuid__": "9525baa4-aca8-4ff2-9655-61eb0fe4c7cf"
+    },
+    "1_enemies_1_WALK_004": {
+      "__uuid__": "5b269625-5515-41dd-942b-ef5b19376cd2"
+    },
+    "1_enemies_1_WALK_005": {
+      "__uuid__": "fb0454cc-7098-49c7-9106-74b3f2f05879"
+    },
+    "1_enemies_1_WALK_006": {
+      "__uuid__": "7ef3848e-b702-468f-b984-dcbb5ee9204b"
+    },
+    "1_enemies_1_WALK_007": {
+      "__uuid__": "33ab3666-0ddf-4d12-9234-ddbd0c7bfbd4"
+    },
+    "1_enemies_1_WALK_008": {
+      "__uuid__": "1fd40ad1-acef-4af1-bd7b-8dc128883195"
+    },
+    "1_enemies_1_WALK_009": {
+      "__uuid__": "b17874ef-173e-4bbe-80cc-56dc668287cc"
+    }
+  }
+}

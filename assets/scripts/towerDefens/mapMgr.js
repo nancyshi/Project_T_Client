@@ -19,7 +19,8 @@ cc.Class({
         roadLayer: cc.TiledLayer,
         pathes: null,
 
-        monstors: []
+        monstors: [],
+        soldiers: []
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,6 +33,7 @@ cc.Class({
         monstorMgr.basePathPoints = this.pathes["testPath"]
         monstorMgr.state = 1
         this.monstors.push(testMonstor)
+
     },
 
     start () {

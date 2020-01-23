@@ -68,13 +68,27 @@ cc.Class({
         },
         isHeathBarHidden: {
             get() {
+                if (this._isHeathBarHidden == null) {
+                    this._isHeathBarHidden = true
+                }
                 return this._isHeathBarHidden
             },
             set(value) {
                 this._isHeathBarHidden = value
                 var heathBarNode = this.node.getChildByName("heathProcessBar")
                 
-                heathBarNode.active = value
+                heathBarNode.active = !value
+            }
+        },
+        heathBarShowLastTime: {
+            get() {
+                return this._heathBarShowLastTime
+            },
+            set(value) {
+                this._heathBarShowLastTime = value
+                if (value <= 0) {
+                    this.isHeathBarHidden = true
+                }
             }
         },
         moveSpeed: 100,
@@ -84,13 +98,36 @@ cc.Class({
         vy: null,
         targetIndex: 1,
 
+        mapMgr: null,
+
         //battle properties
         hurt: 10,
+        attackRange: 10,
         hurtRange: -1,
         hurtDelta: 0.5,
         hurtType: 1, // while 1 indicate physical ,and 2 indicate magic
         physicalDefense: 2,
-        magicDefense: 0
+        magicDefense: 0,
+        currentEnmy: null,
+
+        canAttack: {
+            get() {
+                if (this._canAttack == null) {
+                    this._canAttack = true
+                }
+                return this._canAttack
+            },
+
+            set(value) {
+                this._canAttack = value
+                if (value == false) {
+                    var self = this
+                    this.scheduleOnce(function(){
+                        self.canAttack = true
+                    },this.hurtDelta)
+                }
+            }
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -108,6 +145,10 @@ cc.Class({
 
         this.maxHealth = 100
         this.health = 100
+        this.mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr")
+
+        var anim = this.node.getComponent(cc.Animation)
+        anim.play("walk")
     },
 
     update (dt) {
@@ -142,6 +183,28 @@ cc.Class({
                 }
             }
 
+            for (var index in this.mapMgr.soldiers) {
+                var oneSoldier = this.mapMgr.soldiers[index]
+                var dis = this.getDisOfTwoPoint(this.node.position,oneSoldier.position)
+                if (dis <= this.attackRange) {
+                    this.currentEnmy = oneSoldier
+                    this.state = 4
+                    break
+                }
+            }
+
+
+        }
+
+        else if (this.state == 4) {
+            if (this.canAttack == true) {
+                this.canAttack = false
+                this.attackEnmy()
+            }
+        }
+
+        if (this.heathBarShowLastTime > 0 ) {
+            this.heathBarShowLastTime -= dt
         }
     },
 
@@ -170,7 +233,7 @@ cc.Class({
     },
 
     onDie() {
-        this.node.removeFromParent()
+        
         var mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr")
         var temp = null
         for (var index in mapMgr.monstors) {
@@ -182,10 +245,36 @@ cc.Class({
         if (temp != null) {
             mapMgr.monstors.splice(index,1)
         }
+
+        var anime = this.node.getComponent(cc.Animation)
+        var animState = anime.play("die")
+        var duration = animState.duration
+        var self = this
+        cc.tween(this.node)
+            .delay(duration)
+            .call(function(){
+                self.node.removeFromParent()
+            })
+            .start()
     },
 
-    getHurt(hurtNum) {
-        var temp = this.health - hurtNum
+    getHurt(hurtNum,givenType) {
+        this.heathBarShowLastTime = 3
+        this.isHeathBarHidden = false
+        var acturalHurt = null
+        switch(givenType) {
+            case 1:
+                acturalHurt = hurtNum / (1 + this.physicalDefense)
+                break
+            case 2: 
+                acturalHurt = hurtNum / (1 + this.magicDefense)
+                break
+            default:
+                acturalHurt = hurtNum / (1  + this.physicalDefense)
+
+        }
+
+        var temp = this.health - acturalHurt
         if (temp <= 0) {
             this.health = 0
             this.state = 3
@@ -193,5 +282,14 @@ cc.Class({
         else {
             this.health = temp
         }
+    },
+
+    attackEnmy() {
+        var anim = this.node.getComponent(cc.Animation)
+        anim.play("attack")
+    },
+
+    hurtEnmy() {
+        this.currentEnmy.getHurt(this.hurt,this.hurtType)
     }
 });

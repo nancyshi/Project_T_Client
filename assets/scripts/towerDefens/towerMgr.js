@@ -16,6 +16,7 @@ cc.Class({
         hurtDelta: 1, // mesured by second
         hurtRange: -1, // -1 indicate that the tower will attack only one enmy
         attackRange: 1000,
+        hurtType: 1, //1 indicate physical, 2 indicate magical
         monstors: null,
         canAttack: {
             get() {
@@ -69,7 +70,7 @@ cc.Class({
         this.canAttack = false
         if (this.hurtRange == -1) {
             var monstorMgr = monstor.getComponent("monstorMgr")
-            monstorMgr.getHurt(this.hurt)
+            monstorMgr.getHurt(this.hurt,this.hurtType)
         }
         else {
             var monstorsForHurt = []
@@ -89,7 +90,7 @@ cc.Class({
                 for (var index in monstorsForHurt) {
                     var oneMonstor = monstorsForHurt[index]
                     var monstorMgr = oneMonstor.getComponent("monstorMgr")
-                    monstorMgr.getHurt(this.hurt)
+                    monstorMgr.getHurt(this.hurt,this.hurtType)
                 }
             }
         }
