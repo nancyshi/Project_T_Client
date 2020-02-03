@@ -48,7 +48,6 @@ cc.Class({
                 }
             }
         },
-        resesToLoad: null,
         resesNum: {
             get: function get() {
                 return this._resesNum;
@@ -90,13 +89,12 @@ cc.Class({
     onLoad: function onLoad() {},
     start: function start() {},
     loadNeededReses: function loadNeededReses() {
-        var waveConfig = this.node.parent.getChildByName("gameMgrNode").getComponent("gameMgr").waveConfig.json;
         var monstorIds = [];
-        for (var k in waveConfig) {
-            var element = waveConfig[k];
-            for (var index in element) {
-                var monstorObj = element[index];
-                var monstorId = monstorObj.monstorId;
+        var refreshPlan = this.node.parent.getChildByName("gameMgrNode").getComponent("gameMgr").refreshPlan;
+        for (var k in refreshPlan) {
+            var monstorsConfig = refreshPlan[k].monstorsConfig;
+            for (var key in monstorsConfig) {
+                var monstorId = monstorsConfig[key].monstorId;
                 if (monstorIds.some(function (x) {
                     return x == monstorId;
                 }) == false) {

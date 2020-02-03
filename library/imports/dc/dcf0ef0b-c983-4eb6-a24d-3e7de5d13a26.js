@@ -18,55 +18,23 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        refreshConfig: cc.JsonAsset,
-        waveConfig: cc.JsonAsset,
-        refresPlanId: 10001,
-        maxHeath: {
-            get: function get() {
-                if (this._maxHeath == null) {
-                    this._maxHeath = 10;
-                }
-                return this._maxHeath;
-            },
-            set: function set(value) {
-                this._maxHeath = value;
-            }
-        },
-        currentHeath: {
-            get: function get() {
-                if (this._currentHeath == null) {
-                    this._currentHeath = 10;
-                }
-                return this._currentHeath;
-            },
-            set: function set(value) {
-                this._currentHeath = value;
-                if (value >= 0) {
-                    this.setupLabels();
-                } else {
-                    this.onFail();
-                }
-            }
-        },
-        isRefreshStarted: {
-            get: function get() {
-                return this._isRefreshStarted;
-            },
-            set: function set(value) {
-                this._isRefreshStarted = value;
-                if (value == true) {
-                    this.onRefreshStart();
-                }
-            }
-        },
 
+        refreshPlanId: {
+            get: function get() {
+                return this._refreshPlanId;
+            },
+            set: function set(value) {
+                this._refreshPlanId = value;
+                this.refreshPlan = require("refreshConfig")[this.refreshPlanId.toString()];
+            }
+        },
+        refreshPlan: null,
         currentWaveIndex: {
             get: function get() {
                 return this._currentWaveIndex;
             },
             set: function set(value) {
                 this._currentWaveIndex = value;
-                this.setupLabels();
                 this.onWaveIndexChange();
             }
         },
@@ -79,58 +47,61 @@ cc.Class({
                 this.onMonstorIndexChange();
             }
         },
-        waveTimer: {
-            get: function get() {
-                if (this._waveTimer == null) {
-                    this._waveTimer = {
-                        currentTime: null,
-                        targetTime: null
-                    };
-                }
-                return this._waveTimer;
-            },
-            set: function set(value) {
-                this._waveTimer = value;
-                if (value.currentTime >= value.targetTime) {
-                    var tempIndex = this.currentWaveIndex + 1;
-                    if (tempIndex <= this.refreshConfig.json.length - 1) {
-                        this.waveTimer.currentTime = null;
-                        this.currentWaveIndex += 1;
-                    }
-                }
-            }
-        },
-        monstorTimer: {
-            get: function get() {
-                if (this._monstorTimer == null) {
-                    this._monstorTimer = {
-                        currentTime: null,
-                        targetTime: null
-                    };
-                }
-                return this._monstorTimer;
-            },
-            set: function set(value) {
-                this._monstorTimer = value;
-                if (value.currentTime >= value.targetTime) {
-                    var tempIndex = this.currentMonstorIndex + 1;
-                    if (tempIndex <= this.currentMonstorConfig.length - 1) {
-                        this.monstorTimer.currentTime = null;
-                        this.currentMonstorIndex += 1;
-                    }
-                }
-            }
-        },
-        currentWaveConfig: null,
-        currentMonstorConfig: null,
+
+        resMgr: null,
         mapMgr: null,
-        testPrefab: cc.Prefab,
-        testTowerPrefab: cc.Prefab,
+
+        wavesNum: {
+            get: function get() {
+                var num = null;
+                if (this.refreshPlan != null) {
+                    num = Object.keys(this.refreshPlan).length;
+                }
+                return num;
+            }
+        },
+
+        monstorsNumOfCurrentWave: {
+            get: function get() {
+                var num = null;
+                if (this.refreshPlan != null) {
+                    //num = Object.keys(this.refreshPlan[this.currentWaveIndex.toString()].monstorsConfig).length
+                    var monstorsConfig = this.refreshPlan[this.currentWaveIndex.toString()].monstorsConfig;
+                    num = Object.keys(monstorsConfig).length;
+                }
+                return num;
+            }
+        },
+
+        alivedMonstors: [],
+        alivedMonstorsNum: {
+            get: function get() {
+                return this._alivedMonstorsNum;
+            },
+            set: function set(value) {
+                this._alivedMonstorsNum = value;
+                if (value == 0) {
+                    this.onMonstorsOfCurrentWaveCleared();
+                }
+            }
+        },
+
+        maxHp: 10,
+        currentHp: {
+            get: function get() {
+                return this._currentHp;
+            },
+            set: function set(value) {
+                this._currentHp = value;
+                this.hpLabel.string = value.toString() + " / " + this.maxHp.toString();
+                if (value == 0) {
+                    this.onFail();
+                }
+            }
+        },
 
         waveLabel: cc.Label,
-        heathLabel: cc.Label,
-        alivedMonstors: []
-
+        hpLabel: cc.Label
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -138,85 +109,75 @@ cc.Class({
     // onLoad () {},
 
     start: function start() {
-        this.maxHeath = 10;
-        this.currentHeath = 10;
+        if (this.refreshPlanId == null) {
+            this.refreshPlanId = 1001;
+        }
+        this.resMgr = cc.find("Canvas/resNode").getComponent("resMgr");
         this.mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr");
-        this.isRefreshStarted = true;
+        this.currentHp = this.maxHp;
     },
     update: function update(dt) {
-        if (this.waveTimer.currentTime != null) {
-            var tempTime = this.waveTimer.currentTime + dt;
-            var targetTime = this.waveTimer.targetTime;
-            this.waveTimer = {
-                currentTime: tempTime,
-                targetTime: targetTime
-            };
+        if (this.monstorTimer_Target != null && this.monstorTimer_Current != null) {
+            this.monstorTimer_Current += dt;
         }
-        if (this.monstorTimer.currentTime != null) {
-            var tempTime = this.monstorTimer.currentTime + dt;
-            var targetTime = this.monstorTimer.targetTime;
-            this.monstorTimer = {
-                currentTime: tempTime,
-                targetTime: targetTime
-            };
+
+        if (this.waveTimer_Target != null && this.waveTimer_Current != null) {
+            this.waveTimer_Current += dt;
         }
     },
-    onRefreshStart: function onRefreshStart() {
-        this.currentWaveIndex = 0;
+    startRefresh: function startRefresh() {
+        this.currentWaveIndex = 1;
     },
     onWaveIndexChange: function onWaveIndexChange() {
-        this.currentWaveConfig = this.refreshConfig.json[this.currentWaveIndex];
-        var waveId = this.currentWaveConfig.waveId;
-        this.currentMonstorConfig = this.waveConfig.json[waveId.toString()];
-        if (this.currentMonstorConfig.length > 0) {
-            this.currentMonstorIndex = 0;
-        }
+        this.waveLabel.string = this.currentWaveIndex.toString() + " / " + this.wavesNum.toString();
+        this.currentMonstorIndex = 1;
     },
     onMonstorIndexChange: function onMonstorIndexChange() {
-        var monstorId = this.currentMonstorConfig[this.currentMonstorIndex].monstorId;
+        var monstorConfig = this.refreshPlan[this.currentWaveIndex.toString()].monstorsConfig[this.currentMonstorIndex.toString()];
+        var monstorId = monstorConfig.monstorId;
+        var prefab = this.getMonstorPrefabById(monstorId);
+        var monstor = cc.instantiate(prefab);
+        var pathId = monstorConfig.pathId;
+        var timeDelta = monstorConfig.timeDelta;
 
-        var monstorPrefab = this.getMonstorPrefabById(monstorId);
-        var oneMonstor = cc.instantiate(monstorPrefab);
-        var monstorMgr = oneMonstor.getComponent("monstorMgr");
-        var pathId = this.currentMonstorConfig[this.currentMonstorIndex].pathId;
+        monstor.x = -1000;
+        monstor.y = -1000;
+        this.alivedMonstors.push(monstor);
+        this.alivedMonstorsNum = this.alivedMonstors.length;
 
+        var monstorMgr = monstor.getComponent("monstorMgr");
         monstorMgr.basePathPoints = this.mapMgr.pathes[pathId.toString()];
 
-        oneMonstor.x = -1000;
-        oneMonstor.y = -1000;
-        this.alivedMonstors.push(oneMonstor);
-        cc.find("Canvas").addChild(oneMonstor);
-
-        if (this.currentMonstorIndex < this.currentMonstorConfig.length - 1) {
-            var timeDelta = this.currentMonstorConfig[this.currentMonstorIndex].timeDelta;
-            this.monstorTimer = {
-                currentTime: 0,
-                targetTime: timeDelta
-            };
+        cc.find("Canvas").addChild(monstor);
+        if (this.currentMonstorIndex < this.monstorsNumOfCurrentWave) {
+            var self = this;
+            this.scheduleOnce(function () {
+                self.currentMonstorIndex += 1;
+            }, timeDelta);
         } else {
-            this.onMonstorRefreshCompelete();
+            this.onMonstorsOfCurrentWaveRefreshComplete();
+        }
+    },
+    onMonstorsOfCurrentWaveRefreshComplete: function onMonstorsOfCurrentWaveRefreshComplete() {},
+    onMonstorsOfCurrentWaveCleared: function onMonstorsOfCurrentWaveCleared() {
+        if (this.currentWaveIndex < this.wavesNum) {
+            var waveDelta = this.refreshPlan[this.currentWaveIndex.toString()].waveDelta;
+            var self = this;
+            this.scheduleOnce(function () {
+                self.currentWaveIndex += 1;
+            }, waveDelta);
+        } else {
+            this.onWin();
         }
     },
     getMonstorPrefabById: function getMonstorPrefabById(givenId) {
-        var resMgr = cc.find("Canvas/resNode").getComponent("resMgr");
-        var monstorRes = resMgr.reses.monstors;
-        var prefab = monstorRes[givenId.toString()];
-        return prefab;
+        return this.resMgr.reses.monstors[givenId.toString()];
     },
-    onMonstorRefreshCompelete: function onMonstorRefreshCompelete() {
-        if (this.currentWaveIndex < this.refreshConfig.json.length - 1) {
-            var timeDelta = this.currentWaveConfig.waveDelta;
-            this.waveTimer = {
-                currentTime: 0,
-                targetTime: timeDelta
-            };
-        }
-    },
-    setupLabels: function setupLabels() {
-        this.waveLabel.string = (this.currentWaveIndex + 1).toString() + " / " + this.refreshConfig.json.length.toString();
-        this.heathLabel.string = this.currentHeath.toString() + " / " + this.maxHeath.toString();
-    },
-    onFail: function onFail() {}
+    onWin: function onWin() {},
+    onFail: function onFail() {
+        cc.director.pause();
+        cc.log("YOU LOSE");
+    }
 });
 
 cc._RF.pop();

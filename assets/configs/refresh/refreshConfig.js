@@ -6,7 +6,7 @@ var refreshConfig = {
                 "1": {
                     monstorId: 10001,
                     pathId: 1,
-                    timeDelta: 0.2
+                    timeDelta: 0.2,
                 },
                 "2": {
                     monstorId: 10001,

@@ -217,11 +217,12 @@ cc.Class({
         }
         if (temp != null) {
             this.gameMgr.alivedMonstors.splice(index, 1);
+            this.gameMgr.alivedMonstorsNum = this.gameMgr.alivedMonstors.length;
         }
         this.node.removeFromParent();
 
         var heathMinusNum = 1;
-        this.gameMgr.currentHeath -= heathMinusNum;
+        this.gameMgr.currentHp -= heathMinusNum;
     },
     onDie: function onDie() {
 
@@ -234,6 +235,7 @@ cc.Class({
         }
         if (temp != null) {
             this.gameMgr.alivedMonstors.splice(index, 1);
+            this.gameMgr.alivedMonstorsNum = this.gameMgr.alivedMonstors.length;
         }
 
         var anime = this.node.getComponent(cc.Animation);
