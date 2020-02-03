@@ -1,0 +1,62 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "effect_fire.plist",
+  "_objFlags": 0,
+  "_native": "",
+  "_spriteFrames": {
+    "1_effect_fire_000": {
+      "__uuid__": "b06fdb59-3a3a-4436-8264-d9ea0b68dd2f"
+    },
+    "1_effect_fire_001": {
+      "__uuid__": "392e012b-dc47-494c-8be8-368f175ba50c"
+    },
+    "1_effect_fire_002": {
+      "__uuid__": "a6e6e591-4ce9-406f-9d91-903e58e7aa80"
+    },
+    "1_effect_fire_003": {
+      "__uuid__": "eb84dad4-c205-4f81-a08f-1e58d0cf080f"
+    },
+    "1_effect_fire_004": {
+      "__uuid__": "cf641bef-76f5-4980-af51-eef5b0fe6ba4"
+    },
+    "1_effect_fire_006": {
+      "__uuid__": "40054072-bd4a-400d-8381-001b4b130143"
+    },
+    "1_effect_fire_007": {
+      "__uuid__": "9c6deb16-ce4c-423d-b85a-7a0d36566298"
+    },
+    "1_effect_fire_008": {
+      "__uuid__": "7532e179-55ec-46de-9107-c8d8d976283a"
+    },
+    "1_effect_fire_009": {
+      "__uuid__": "b1be8d5f-d2a3-4e54-bcfe-b82b28578aba"
+    },
+    "1_effect_fire_010": {
+      "__uuid__": "3427cae1-0329-4018-9bb5-45d23ece9b7c"
+    },
+    "1_effect_fire_011": {
+      "__uuid__": "56b8bcac-7de1-4a92-aac6-2658018c4f74"
+    },
+    "1_effect_fire_012": {
+      "__uuid__": "1bfffb6b-5424-4132-b42a-9fc39fe9fc84"
+    },
+    "1_effect_fire_013": {
+      "__uuid__": "f079ee68-5d8f-4f5c-8ef9-422f595c8a9f"
+    },
+    "1_effect_fire_014": {
+      "__uuid__": "5c669d4a-a9e4-4792-b655-a77d797503bf"
+    },
+    "1_effect_fire_015": {
+      "__uuid__": "6c928100-7d97-4c1e-882a-c7929cf2ddea"
+    },
+    "1_effect_fire_016": {
+      "__uuid__": "fc17d70a-c50b-4c74-807b-36e85d0d8426"
+    },
+    "1_effect_fire_017": {
+      "__uuid__": "724d149a-bd5c-4be3-a59a-24044c5a4727"
+    },
+    "1_effect_fire_018": {
+      "__uuid__": "77846850-2b78-4542-afa6-e7def0b71688"
+    }
+  }
+}

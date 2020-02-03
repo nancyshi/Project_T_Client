@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "eclips",
+    "texture": "94f61bd3-62e7-4602-a90e-4aaa178bfc70",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      196,
+      196
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      196,
+      196
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

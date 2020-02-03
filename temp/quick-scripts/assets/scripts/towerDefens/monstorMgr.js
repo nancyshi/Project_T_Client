@@ -101,8 +101,7 @@ cc.Class({
         vx: null,
         vy: null,
         targetIndex: 1,
-
-        mapMgr: null,
+        gameMgr: null,
 
         //battle properties
         hurt: 10,
@@ -146,8 +145,8 @@ cc.Class({
 
         this.maxHealth = 100;
         this.health = 100;
-        this.mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr");
-
+        this.gameMgr = cc.find("Canvas/gameMgrNode").getComponent("gameMgr");
+        this.state = 1;
         var anim = this.node.getComponent(cc.Animation);
         anim.play("walk");
     },
@@ -181,15 +180,16 @@ cc.Class({
                 }
             }
 
-            for (var index in this.mapMgr.soldiers) {
-                var oneSoldier = this.mapMgr.soldiers[index];
-                var dis = this.getDisOfTwoPoint(this.node.position, oneSoldier.position);
-                if (dis <= this.attackRange) {
-                    this.currentEnmy = oneSoldier;
-                    this.state = 4;
-                    break;
-                }
-            }
+            // for (var index in this.mapMgr.soldiers) {
+            //     var oneSoldier = this.mapMgr.soldiers[index]
+            //     var dis = this.getDisOfTwoPoint(this.node.position,oneSoldier.position)
+            //     if (dis <= this.attackRange) {
+            //         this.currentEnmy = oneSoldier
+            //         this.state = 4
+            //         break
+            //     }
+            // }
+
         } else if (this.state == 4) {
             if (this.canAttack == true) {
                 this.canAttack = false;
@@ -207,31 +207,33 @@ cc.Class({
         return Math.sqrt(temp);
     },
     onReachFinalTarget: function onReachFinalTarget() {
-        this.node.removeFromParent();
-        var mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr");
+
         var temp = null;
-        for (var index in mapMgr.monstors) {
-            if (this.node == mapMgr.monstors[index]) {
+        for (var index in this.gameMgr.alivedMonstors) {
+            if (this.node == this.gameMgr.alivedMonstors[index]) {
                 temp = index;
                 break;
             }
         }
         if (temp != null) {
-            mapMgr.monstors.splice(index, 1);
+            this.gameMgr.alivedMonstors.splice(index, 1);
         }
+        this.node.removeFromParent();
+
+        var heathMinusNum = 1;
+        this.gameMgr.currentHeath -= heathMinusNum;
     },
     onDie: function onDie() {
 
-        var mapMgr = cc.find("Canvas/mapNode").getComponent("mapMgr");
         var temp = null;
-        for (var index in mapMgr.monstors) {
-            if (this.node == mapMgr.monstors[index]) {
+        for (var index in this.gameMgr.alivedMonstors) {
+            if (this.node == this.gameMgr.alivedMonstors[index]) {
                 temp = index;
                 break;
             }
         }
         if (temp != null) {
-            mapMgr.monstors.splice(index, 1);
+            this.gameMgr.alivedMonstors.splice(index, 1);
         }
 
         var anime = this.node.getComponent(cc.Animation);
@@ -248,13 +250,13 @@ cc.Class({
         var acturalHurt = null;
         switch (givenType) {
             case 1:
-                acturalHurt = hurtNum / (1 + this.physicalDefense);
+                acturalHurt = hurtNum * hurtNum / (hurtNum + this.physicalDefense);
                 break;
             case 2:
-                acturalHurt = hurtNum / (1 + this.magicDefense);
+                acturalHurt = hurtNum * hurtNum / (hurtNum + this.magicDefense);
                 break;
             default:
-                acturalHurt = hurtNum / (1 + this.physicalDefense);
+                acturalHurt = hurtNum * hurtNum / (hurtNum + this.physicalDefense);
 
         }
 

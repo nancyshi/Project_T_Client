@@ -16,24 +16,14 @@ cc.Class({
         mapSize: cc.Size,
         tileSize: cc.Size,
         mapSizeInPix: cc.Size,
-        roadLayer: cc.TiledLayer,
         pathes: null,
-
         monstors: [],
-        soldiers: []
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         this.initProperties()
-        //have a test of monstor
-        var testMonstor = cc.find("Canvas/monstor_lvpang")
-        var monstorMgr = testMonstor.getComponent("monstorMgr")
-        monstorMgr.basePathPoints = this.pathes["testPath"]
-        monstorMgr.state = 1
-        this.monstors.push(testMonstor)
-
     },
 
     start () {
@@ -45,10 +35,8 @@ cc.Class({
         this.mapSize = this.tileMap.getMapSize()
         this.tileSize = this.tileMap.getTileSize()
         this.mapSizeInPix = cc.size(this.mapSize.width * this.tileSize.width, this.mapSize.height * this.tileSize.height)
-        this.roadLayer = this.tileMap.getLayer("road")
         var pathesObjGroup = this.tileMap.getObjectGroup("pathes")
         var pathObjects = pathesObjGroup.getObjects()
-
         this.pathes = {}
         for (var index in pathObjects) {
             var onePathObj = pathObjects[index]

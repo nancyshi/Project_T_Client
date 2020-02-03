@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "1_effect_fire_009",
+    "texture": "5dbee764-1981-4d22-8da6-e86f9640dde6",
+    "atlas": "5d73da46-17d7-43ec-afd0-d5d7059d5bb8",
+    "rect": [
+      1287,
+      1,
+      629,
+      482
+    ],
+    "offset": [
+      -91,
+      -688
+    ],
+    "originalSize": [
+      909,
+      2398
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

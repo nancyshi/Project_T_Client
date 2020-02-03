@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "endFlag",
+    "texture": "1ab9ff2f-81c1-4bed-9912-366a974d6a42",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      55,
+      86
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      55,
+      86
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
