@@ -212,7 +212,6 @@
     },
     "_enabled": true,
     "resesToLoad": null,
-    "reses": null,
     "target": null,
     "_id": "82v8dBvulEl5Fx2zWm1VSz"
   },
@@ -1438,6 +1437,7 @@
     "waveConfig": {
       "__uuid__": "f66e625e-dc9c-423b-9a34-6813977fa4ab"
     },
+    "refresPlanId": 10001,
     "currentWaveConfig": null,
     "currentMonstorConfig": null,
     "mapMgr": null,

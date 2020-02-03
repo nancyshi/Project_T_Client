@@ -20,6 +20,7 @@ cc.Class({
     properties: {
         refreshConfig: cc.JsonAsset,
         waveConfig: cc.JsonAsset,
+        refresPlanId: 10001,
         maxHeath: {
             get: function get() {
                 if (this._maxHeath == null) {

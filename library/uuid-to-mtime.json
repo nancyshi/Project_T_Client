@@ -595,8 +595,8 @@
     "relativePath": "images/towerDefenseRes/monstor_lvpang.png"
   },
   "35438407-33b7-45e8-a90d-0120dad556a3": {
-    "asset": 1580666985499,
-    "meta": 1580666985505,
+    "asset": 1580720977898,
+    "meta": 1580720977908,
     "relativePath": "scenes/level_01.fire"
   },
   "cd2aaa7a-a870-4930-b90b-300a8af3fa0a": {
@@ -1229,11 +1229,6 @@
     "meta": 1580660285882,
     "relativePath": "configs/monstor/monstorConfig.js"
   },
-  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
-    "asset": 1580666977569,
-    "meta": 1580666978874,
-    "relativePath": "scripts/towerDefens/gameMgr.js"
-  },
   "80e6beff-f1a3-4502-9020-d646f603cf33": {
     "asset": 1580668229378,
     "meta": 1580668229384,
@@ -1263,5 +1258,10 @@
     "asset": 1580719397854,
     "meta": 1580719401109,
     "relativePath": "configs/refresh/refreshConfig.js"
+  },
+  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
+    "asset": 1580719694298,
+    "meta": 1580720892859,
+    "relativePath": "scripts/towerDefens/gameMgr.js"
   }
 }
