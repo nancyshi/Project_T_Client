@@ -1,9 +1,3 @@
-"use strict";
-cc._RF.push(module, '98f3fanELVE5bkMYFt2ilcp', 'temp');
-// scripts/towerDefens/temp.js
-
-"use strict";
-
 // Learn cc.Class:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
 //  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
@@ -33,26 +27,42 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        circleBgPrefab: cc.Prefab,
+        buttonsConfig:null,
+        buttonPrefab: cc.Prefab,
+        isUIShowed: false,
+        uiNode: cc.Node,
+
+        testButtonsConfig: null
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad: function onLoad() {
-        this.node.on("touchstart", this.onTouchBegan, this);
+    onLoad () {
+        this.nonde.on("touchstart",this.onTouchStart,this)
+        this.node.on("touchmove",this.onTouchMove,this)
+        this.node.on("touchend",this.onTouchEnd,this)
+        
     },
-    start: function start() {},
-    onTouchBegan: function onTouchBegan(event) {
-        var towerAreaMgr = this.node.parent.parent.getComponent("towerAreaMgr");
-        if (towerAreaMgr.buildUI != null) {
-            towerAreaMgr.removeUI();
+
+    start () {
+
+    },
+    showUI(){},
+    removeUI(){},
+
+    onTouchStart(event){},
+    onTouchMove(event){},
+    onTouchEnd(event){
+        if (this.isUIShowed == false){
+            this.showUI()
         }
     },
-    onDestroy: function onDestroy() {
-        this.node.off("touchstart", this.onTouchBegan, this);
-    }
-
     // update (dt) {},
 
+    onDestroy(){
+        this.node.off("touchstart",this.onTouchStart,this)
+        this.node.off("touchmove",this.onTouchMove,this)
+        this.node.off("touchend",this.onTouchEnd,this)
+    }
 });
-
-cc._RF.pop();

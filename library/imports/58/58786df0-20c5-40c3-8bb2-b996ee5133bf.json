@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "",
+    "_name": "buildTowerUI",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -179,9 +179,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "7b1a9c8b-6dde-4ad2-9396-9ddd339fa750"
+      "__id__": 0
     },
-    "fileId": "5cnzRzuQ1Pk6g6ugzunBpK",
+    "fileId": "f0EM+hcGlM5phnfAg21GEj",
     "sync": false
   },
   {
@@ -201,9 +201,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "7b1a9c8b-6dde-4ad2-9396-9ddd339fa750"
+      "__id__": 0
     },
-    "fileId": "a5HJzynrVOaqyfrLSjNi8J",
+    "fileId": "d7nWlbI0JI3J1r3gbf8fNX",
     "sync": false
   }
 ]

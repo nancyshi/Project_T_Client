@@ -1,6 +1,6 @@
-(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/towerDefens/towers/temp.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '98f3fanELVE5bkMYFt2ilcp', 'temp', __filename);
-// scripts/towerDefens/temp.js
+(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/towerDefens/circleUIMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
+cc._RF.push(module, '28aab2RMZlDtZtI7cMVhp0j', 'circleUIMgr', __filename);
+// scripts/towerDefens/circleUIMgr.js
 
 "use strict";
 
@@ -33,26 +33,40 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        circleBgPrefab: cc.Prefab,
+        buttonsConfig: null,
+        buttonPrefab: cc.Prefab,
+        isUIShowed: false,
+        uiNode: cc.Node,
+
+        testButtonsConfig: null
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {
-        this.node.on("touchstart", this.onTouchBegan, this);
+        this.nonde.on("touchstart", this.onTouchStart, this);
+        this.node.on("touchmove", this.onTouchMove, this);
+        this.node.on("touchend", this.onTouchEnd, this);
     },
     start: function start() {},
-    onTouchBegan: function onTouchBegan(event) {
-        var towerAreaMgr = this.node.parent.parent.getComponent("towerAreaMgr");
-        if (towerAreaMgr.buildUI != null) {
-            towerAreaMgr.removeUI();
+    showUI: function showUI() {},
+    removeUI: function removeUI() {},
+    onTouchStart: function onTouchStart(event) {},
+    onTouchMove: function onTouchMove(event) {},
+    onTouchEnd: function onTouchEnd(event) {
+        if (this.isUIShowed == false) {
+            this.showUI();
         }
     },
-    onDestroy: function onDestroy() {
-        this.node.off("touchstart", this.onTouchBegan, this);
-    }
 
     // update (dt) {},
 
+    onDestroy: function onDestroy() {
+        this.node.off("touchstart", this.onTouchStart, this);
+        this.node.off("touchmove", this.onTouchMove, this);
+        this.node.off("touchend", this.onTouchEnd, this);
+    }
 });
 
 cc._RF.pop();
@@ -66,5 +80,5 @@ cc._RF.pop();
             });
         }
         })();
-        //# sourceMappingURL=temp.js.map
+        //# sourceMappingURL=circleUIMgr.js.map
         

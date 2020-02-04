@@ -180,7 +180,7 @@
       "array": [
         0,
         0,
-        534.3251192084448,
+        534.3269976309599,
         0,
         0,
         0,
@@ -1441,6 +1441,7 @@
     },
     "_enabled": true,
     "target": null,
+    "completeCallBack": null,
     "_id": "82v8dBvulEl5Fx2zWm1VSz"
   },
   {
