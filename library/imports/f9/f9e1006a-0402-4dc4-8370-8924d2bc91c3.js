@@ -1,3 +1,9 @@
+"use strict";
+cc._RF.push(module, 'f9e10BqBAJNxINwiSTSvJHD', 'canvasMgr');
+// scripts/towerDefens/level/canvasMgr.js
+
+"use strict";
+
 // Learn cc.Class:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
 //  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
@@ -27,27 +33,27 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        buttonsConfig: null,
-        btnPrefab:cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-
+    onLoad: function onLoad() {
+        this.node.on("touchend", this.onTouchend, this);
     },
-
-    start () {
-        var enabledIds = cc.find("Canvas/resNode").getComponent("resMgr").enabledTowerIds
-        for (var index in enabledIds) {
-            var id = enabledIds[index]            
-            
+    start: function start() {},
+    onTouchend: function onTouchend(event) {
+        for (var index in this.node.children) {
+            var oneNode = this.node.children[index];
+            if (oneNode.getComponent("towerAreaMgr") != null) {
+                oneNode.getComponent("towerAreaMgr").removeUI();
+            }
         }
     },
-
-    buildTower(towerId) {
-
+    onDestroy: function onDestroy() {
+        this.node.off("touchend", this.onTouchend, this);
     }
-
     // update (dt) {},
+
 });
+
+cc._RF.pop();

@@ -33,17 +33,24 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        buttonsConfig: null
+        buttonsConfig: null,
+        btnPrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {},
-    start: function start() {}
-}
+    start: function start() {
+        var enabledIds = cc.find("Canvas/resNode").getComponent("resMgr").enabledTowerIds;
+        for (var index in enabledIds) {
+            var id = enabledIds[index];
+        }
+    },
+    buildTower: function buildTower(towerId) {}
 
-// update (dt) {},
-);
+    // update (dt) {},
+
+});
 
 cc._RF.pop();
         }

@@ -85,7 +85,8 @@ cc.Class({
             }
         },
         target: null,
-        completeCallBack: null
+        completeCallBack: null,
+        enabledTowerIds: []
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -93,6 +94,7 @@ cc.Class({
     onLoad: function onLoad() {},
     start: function start() {},
     loadNeededReses: function loadNeededReses() {
+        //load monstors and towers prefabs
         var monstorIds = [];
         var refreshPlan = this.node.parent.getChildByName("gameMgrNode").getComponent("gameMgr").refreshPlan;
         for (var k in refreshPlan) {
@@ -114,12 +116,25 @@ cc.Class({
             var prefabName = monstorConfig[id].prefabName;
             monstorPrefabNames[id] = prefabName;
         }
+        var towerPrefabNames = {};
+        for (var index in this.enabledTowerIds) {
+            var towerId = this.enabledTowerIds[index];
+            var towerConfig = require("towerConfig")[towerId.toString()];
+            towerPrefabNames[towerId.toString()] = {};
+            for (var key in towerConfig) {
+                var levelConfig = towerConfig[key];
+                var prefabName = levelConfig.prefabName;
+                towerPrefabNames[towerId.toString()][key] = prefabName;
+            }
+        }
+        var monstorPrefabsNum = Object.keys(monstorPrefabNames).length;
+        var towerPrefabsNum = 0;
+        for (var key in towerPrefabNames) {
+            var levelConfig = towerPrefabNames[key];
+            towerPrefabsNum += Object.keys(levelConfig).length;
+        }
 
-        var towerPrefabNames = {
-            "20001": "acherTow_101_01"
-        };
-
-        this.resesNum = Object.keys(monstorPrefabNames).length + Object.keys(towerPrefabNames).length;
+        this.resesNum = monstorPrefabsNum + towerPrefabsNum;
         this.loadedResesNum = 0;
 
         for (var key in monstorPrefabNames) {
@@ -127,7 +142,6 @@ cc.Class({
                 var prefabName = monstorPrefabNames[key];
                 var url = "prefabs/monstors/" + prefabName;
                 cc.loader.loadRes(url, function (err, res) {
-                    cc.log(target.reses);
                     target.reses.monstors[key] = res;
                     target.loadedResesNum += 1;
                 });
@@ -135,14 +149,18 @@ cc.Class({
         }
 
         for (var key in towerPrefabNames) {
-            (function (key, target) {
-                var prefabName = towerPrefabNames[key];
-                var url = "prefabs/towers/" + prefabName;
-                cc.loader.loadRes(url, function (err, res) {
-                    target.reses.towers[key] = res;
-                    target.loadedResesNum += 1;
-                });
-            })(key, this);
+            this.reses.towers[key] = {};
+            var levelConfig = towerPrefabNames[key];
+            for (var k in levelConfig) {
+                (function (k, target) {
+                    var prefabName = levelConfig[k];
+                    var url = "prefabs/towers/" + prefabName;
+                    cc.loader.loadRes(url, function (err, res) {
+                        target.reses.towers[key][k] = res;
+                        target.loadedResesNum += 1;
+                    });
+                })(k, this);
+            }
         }
     }
 }

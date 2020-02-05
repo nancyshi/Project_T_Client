@@ -1,6 +1,6 @@
-"use strict";
-cc._RF.push(module, 'a2d6bkLtepIfYUubCRcQ89x', 'towerAreaMgr');
-// scripts/towerDefens/towers/towerAreaMgr.js
+(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/towerDefens/level/canvasMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
+cc._RF.push(module, 'f9e10BqBAJNxINwiSTSvJHD', 'canvasMgr', __filename);
+// scripts/towerDefens/level/canvasMgr.js
 
 "use strict";
 
@@ -33,50 +33,39 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        buildTowerUIPrefab: cc.Prefab,
-        currentUI: null
-
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {
-        this.node.on("touchend", this.onTouchEnd, this);
+        this.node.on("touchend", this.onTouchend, this);
     },
     start: function start() {},
-    showUI: function showUI() {
-        var ui = cc.instantiate(this.buildTowerUIPrefab);
-        ui.scale = 0;
-        ui.x = 0;
-        ui.y = 0;
-        this.currentUI = ui;
-        this.node.addChild(ui);
-        cc.tween(ui).to(0.2, { scale: 1 }).start();
-    },
-    removeUI: function removeUI() {
-        if (this.currentUI == null) {
-            return;
-        } else {
-            var self = this;
-            cc.tween(this.currentUI).to(0.2, { scale: 0 }).call(function () {
-                self.currentUI.removeFromParent();
-                self.currentUI = null;
-            }).start();
+    onTouchend: function onTouchend(event) {
+        for (var index in this.node.children) {
+            var oneNode = this.node.children[index];
+            if (oneNode.getComponent("towerAreaMgr") != null) {
+                oneNode.getComponent("towerAreaMgr").removeUI();
+            }
         }
-    },
-    onTouchEnd: function onTouchEnd(event) {
-        if (this.currentUI == null) {
-            this.showUI();
-        }
-        event.stopPropagation();
     },
     onDestroy: function onDestroy() {
-        this.node.off("touchend", this.onTouchEnd, this);
+        this.node.off("touchend", this.onTouchend, this);
     }
-}
+    // update (dt) {},
 
-// update (dt) {},
-
-);
+});
 
 cc._RF.pop();
+        }
+        if (CC_EDITOR) {
+            __define(__module.exports, __require, __module);
+        }
+        else {
+            cc.registerModuleFunc(__filename, function () {
+                __define(__module.exports, __require, __module);
+            });
+        }
+        })();
+        //# sourceMappingURL=canvasMgr.js.map
+        

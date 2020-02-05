@@ -50,6 +50,7 @@ cc.Class({
             gameMgr.refreshPlanId = require("levelConfig")[sceneName].refreshPlanId
             gameMgr.maxHp = require("levelConfig")[sceneName].maxHp
             resMgr.completeCallBack = completeCallBack
+            resMgr.enabledTowerIds = [20001]
             resMgr.loadNeededReses()
         })
     },

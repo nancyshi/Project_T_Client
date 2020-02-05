@@ -27,27 +27,27 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        buttonsConfig: null,
-        btnPrefab:cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-
+        this.node.on("touchend",this.onTouchend,this)
     },
 
     start () {
-        var enabledIds = cc.find("Canvas/resNode").getComponent("resMgr").enabledTowerIds
-        for (var index in enabledIds) {
-            var id = enabledIds[index]            
-            
+
+    },
+    onTouchend(event){
+        for (var index in this.node.children) {
+            var oneNode = this.node.children[index]
+            if (oneNode.getComponent("towerAreaMgr") != null) {
+                oneNode.getComponent("towerAreaMgr").removeUI()
+            }
         }
     },
-
-    buildTower(towerId) {
-
+    onDestroy(){
+        this.node.off("touchend",this.onTouchend,this)
     }
-
     // update (dt) {},
 });

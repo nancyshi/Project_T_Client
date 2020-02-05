@@ -27,85 +27,60 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        buildUIPrefab: cc.Prefab,
-        isUIShowed: false,
-        buildUI: {
-            get() {
-                return this._buildUI
-            },
-            set(value) {
-                this._buildUI = value
-                if (value == null) {
-                    return
-                }
-                this.setupButtons()
-            }
-        },
+        buildTowerUIPrefab: cc.Prefab,
+        currentUI: null
 
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        this.node.on("touchend",this.onTouchEnd,this)
+    },
 
     start () {
 
     },
 
+    showUI() {
+        var ui = cc.instantiate(this.buildTowerUIPrefab)
+        ui.scale = 0
+        ui.x = 0
+        ui.y = 0
+        this.currentUI = ui        
+        this.node.addChild(ui)
+        cc.tween(ui)
+            .to(0.2,{scale:1})
+            .start()
+    },
+    removeUI(){
+        if (this.currentUI == null) {
+            return
+        }
+        else {
+            var self = this
+            cc.tween(this.currentUI)
+                .to(0.2,{scale: 0})
+                .call(function(){
+                    self.currentUI.removeFromParent()
+                    self.currentUI = null
+                })
+                .start()
+        }
+    },
+
+    onTouchEnd(event){
+        if (this.currentUI == null) {
+            this.showUI()
+        }
+        event.stopPropagation()
+    },
+
+    onDestroy(){
+        this.node.off("touchend",this.onTouchEnd,this)
+    },
+
+    
     // update (dt) {},
-    onClick() {
-        if (this.buildUI != null) {
-            return
-        }
-        var uiNode = cc.instantiate(this.buildUIPrefab)
-        this.buildUI = uiNode
-        uiNode.scale = 0
-        this.node.addChild(uiNode)
-        cc.tween(uiNode)
-            .to(0.2,{scale: 1})
-            .start()
 
-    },
-
-    removeUI() {
-        if (this.buildUI == null) {
-            return
-        }
-        var self = this
-        cc.tween(this.buildUI)
-            .to(0.2,{scale: 0})
-            .call(function(){
-                self.buildUI.removeFromParent()
-                self.buildUI = null
-            })
-            .start()
-    },
-
-    setupButtons() {
-        var children = this.buildUI.children
-        var buttons = []
-        for (var index in children) {
-            var childNode = children[index]
-            cc.log(childNode.name)
-            if (childNode.getComponent(cc.Button) != null) {
-                buttons.push(childNode)
-            }
-        }
-        for (var index in buttons) {
-            var oneButton = buttons[index]
-            oneButton.name = index.toString()
-            oneButton.on("click",this.onButtonClick,this)
-        }
-    },
-
-    onButtonClick(button) {
-        this.removeUI()
-        var buttonIndex = parseInt(button.node.name)
-        var towerPrefab = cc.find("Canvas/gameMgrNode").getComponent("gameMgr").testTowerPrefab
-        var tower = cc.instantiate(towerPrefab)
-        tower.x = this.node.x
-        tower.y = this.node.y
-        cc.find("Canvas").addChild(tower)
-        this.node.removeFromParent()
-    }
 });
