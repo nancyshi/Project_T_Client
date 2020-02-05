@@ -167,7 +167,11 @@ cc.Class({
         }
     },
     getMonstorPrefabById: function getMonstorPrefabById(givenId) {
-        return this.resMgr.reses.monstors[givenId.toString()];
+        var monstorConfig = require("monstorConfig");
+        var monstorObj = monstorConfig[givenId.toString()];
+        var resId = monstorObj.resId;
+        var prefab = this.resMgr.reses[resId.toString()]["prefabName"];
+        return prefab;
     },
     onWin: function onWin() {},
     onFail: function onFail() {

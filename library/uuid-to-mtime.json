@@ -480,7 +480,7 @@
     "relativePath": "resources/configs/serverConfig.json"
   },
   "9036f6ba-b3f5-4500-a748-9875a2b42d7e": {
-    "asset": 1580747254160,
+    "asset": 1580888022659,
     "meta": 1579617779744,
     "relativePath": "scenes"
   },
@@ -1105,7 +1105,7 @@
     "relativePath": "resources/prefabs/monstors/monstor_lvpang.prefab"
   },
   "98860834-0e69-456d-b3b6-78ce2051b88a": {
-    "asset": 1580837095810,
+    "asset": 1580888306637,
     "meta": 1580390625956,
     "relativePath": "configs"
   },
@@ -1145,14 +1145,9 @@
     "relativePath": "images/towerDefenseRes/eclips.png"
   },
   "418880cd-4c5e-4eea-8471-e8a99c12c04c": {
-    "asset": 1580831970798,
+    "asset": 1580888022658,
     "meta": 1580567420624,
     "relativePath": "prefabs"
-  },
-  "cea8c59c-f03e-4b6d-a072-ea4d18a2ec07": {
-    "asset": 1580835118278,
-    "meta": 1580835118288,
-    "relativePath": "prefabs/towerArea.prefab"
   },
   "dc10ac67-fc6f-4691-a2fc-f4abed8e1df2": {
     "asset": 1580660105488,
@@ -1174,16 +1169,6 @@
     "meta": 1580660261955,
     "relativePath": "configs/monstor"
   },
-  "5e86d79f-87e9-4f41-8ca2-99d2443468b7": {
-    "asset": 1580660285868,
-    "meta": 1580660285882,
-    "relativePath": "configs/monstor/monstorConfig.js"
-  },
-  "80e6beff-f1a3-4502-9020-d646f603cf33": {
-    "asset": 1580884676826,
-    "meta": 1580884676831,
-    "relativePath": "scenes/towerMainScene.fire"
-  },
   "626a8696-59ca-4b90-a979-59dc269768a1": {
     "asset": 1580718312640,
     "meta": 1580719355204,
@@ -1199,11 +1184,6 @@
     "meta": 1580745608921,
     "relativePath": "configs/refresh/refreshConfig.js"
   },
-  "35438407-33b7-45e8-a90d-0120dad556a3": {
-    "asset": 1580835809128,
-    "meta": 1580835809134,
-    "relativePath": "scenes/level_01.fire"
-  },
   "88d66b7e-a57e-44f1-8951-4b5236726423": {
     "asset": 1580745596240,
     "meta": 1580745609080,
@@ -1215,24 +1195,19 @@
     "relativePath": "scripts/towerDefens/monstors"
   },
   "60afb502-ba47-49fe-aa3b-ccc1e2f10fa4": {
-    "asset": 1580829661049,
+    "asset": 1580888022661,
     "meta": 1580747342945,
     "relativePath": "scripts/towerDefens/towers"
   },
   "ea7eae00-acb3-45e4-99c7-ea86faae02ce": {
-    "asset": 1580835400278,
+    "asset": 1580888022660,
     "meta": 1580747356565,
     "relativePath": "scripts/towerDefens/level"
   },
   "38f9e794-6687-435d-ab28-2a5a4d1ef576": {
-    "asset": 1580749250965,
+    "asset": 1580888022660,
     "meta": 1580749225724,
     "relativePath": "scripts/towerDefens/main"
-  },
-  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
-    "asset": 1580753670605,
-    "meta": 1580753673020,
-    "relativePath": "scripts/towerDefens/level/gameMgr.js"
   },
   "8eafeda0-8545-4920-8e10-33da5d2afd20": {
     "asset": 1580753969110,
@@ -1259,44 +1234,79 @@
     "meta": 1580830378184,
     "relativePath": "images/towerDefenseRes/default_btnIcon.png"
   },
-  "58786df0-20c5-40c3-8bb2-b996ee5133bf": {
-    "asset": 1580881116452,
-    "meta": 1580881116458,
-    "relativePath": "prefabs/buildTowerUI.prefab"
-  },
-  "f9e1006a-0402-4dc4-8370-8924d2bc91c3": {
-    "asset": 1580836316033,
-    "meta": 1580836322455,
-    "relativePath": "scripts/towerDefens/level/canvasMgr.js"
-  },
   "14bee480-8003-4bb2-8877-698a0e61554c": {
-    "asset": 1580837107610,
-    "meta": 1580837092179,
+    "asset": 1580888022658,
+    "meta": 1580888022657,
     "relativePath": "configs/tower"
   },
+  "cea8c59c-f03e-4b6d-a072-ea4d18a2ec07": {
+    "asset": 1580888022658,
+    "meta": 1580888083244,
+    "relativePath": "prefabs/towerArea.prefab"
+  },
+  "58786df0-20c5-40c3-8bb2-b996ee5133bf": {
+    "asset": 1580888022658,
+    "meta": 1580888083247,
+    "relativePath": "prefabs/buildTowerUI.prefab"
+  },
+  "35438407-33b7-45e8-a90d-0120dad556a3": {
+    "asset": 1580888022659,
+    "meta": 1580888083250,
+    "relativePath": "scenes/level_01.fire"
+  },
+  "80e6beff-f1a3-4502-9020-d646f603cf33": {
+    "asset": 1580900780665,
+    "meta": 1580900780673,
+    "relativePath": "scenes/towerMainScene.fire"
+  },
+  "f9e1006a-0402-4dc4-8370-8924d2bc91c3": {
+    "asset": 1580888022659,
+    "meta": 1580888083335,
+    "relativePath": "scripts/towerDefens/level/canvasMgr.js"
+  },
   "1cba8c1a-ae9d-4a0a-9880-13ff23747d60": {
-    "asset": 1580840807265,
-    "meta": 1580841690823,
+    "asset": 1580888022660,
+    "meta": 1580888083369,
     "relativePath": "scripts/towerDefens/main/mainSceneMgr.js"
   },
-  "88d4fc67-dde7-49fd-8e84-e777de07813c": {
-    "asset": 1580883629574,
-    "meta": 1580884653865,
-    "relativePath": "configs/tower/towerConfig.js"
-  },
-  "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
-    "asset": 1580883648890,
-    "meta": 1580884653878,
-    "relativePath": "scripts/towerDefens/level/resMgr.js"
+  "3afd3aee-74e1-4941-a533-3f552e334e25": {
+    "asset": 1580888022661,
+    "meta": 1580888083384,
+    "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
   },
   "a2d6b90b-b5ea-487d-852e-6c245c43cf71": {
-    "asset": 1580883152200,
-    "meta": 1580884653899,
+    "asset": 1580888022661,
+    "meta": 1580888083387,
     "relativePath": "scripts/towerDefens/towers/towerAreaMgr.js"
   },
-  "3afd3aee-74e1-4941-a533-3f552e334e25": {
-    "asset": 1580887959181,
-    "meta": 1580887968510,
-    "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
+  "cdf7a2ff-4bbf-492c-b899-f9f84b42f54c": {
+    "asset": 1580888490815,
+    "meta": 1580888302212,
+    "relativePath": "configs/res"
+  },
+  "5e86d79f-87e9-4f41-8ca2-99d2443468b7": {
+    "asset": 1580888519718,
+    "meta": 1580888536502,
+    "relativePath": "configs/monstor/monstorConfig.js"
+  },
+  "2d40d8ab-5ea2-4970-be7d-f70b2cde06a1": {
+    "asset": 1580889022721,
+    "meta": 1580889026667,
+    "relativePath": "configs/tower/towerConfig.js"
+  },
+  "d8930191-43ed-4f2a-ab16-18387457dd45": {
+    "asset": 1580898660534,
+    "meta": 1580898663143,
+    "relativePath": "configs/res/resConfig.js"
+  },
+  "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
+    "asset": 1580898788551,
+    "meta": 1580900235609,
+    "relativePath": "scripts/towerDefens/level/resMgr.js"
+  },
+  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
+    "asset": 1580900777106,
+    "meta": 1580900780371,
+    "relativePath": "scripts/towerDefens/level/gameMgr.js"
   }
 }

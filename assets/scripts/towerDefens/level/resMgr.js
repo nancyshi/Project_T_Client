@@ -67,10 +67,7 @@ cc.Class({
         reses: {
             get() {
                 if (this._reses == null) {
-                    this._reses = {
-                        monstors: {},
-                        towers: {}
-                    }
+                    this._reses = {}
                 }
                 return this._reses
             },
@@ -94,76 +91,84 @@ cc.Class({
     },
 
     loadNeededReses() {
-        //load monstors and towers prefabs
-        var monstorIds = []
+        //load monstors and towers reses
         var refreshPlan = this.node.parent.getChildByName("gameMgrNode").getComponent("gameMgr").refreshPlan
-        for (var k in refreshPlan) {
-            var monstorsConfig = refreshPlan[k].monstorsConfig
-            for (var key in monstorsConfig) {
-                var monstorId = monstorsConfig[key].monstorId
-                if (monstorIds.some(function(x){return x == monstorId}) == false) {
-                    monstorIds.push(monstorId)
+        var monstorConfig = require("monstorConfig")
+
+        var monstorResIds = []
+        for (var key in refreshPlan) {
+            var monstors = refreshPlan[key].monstorsConfig
+            for (var k in monstors) {
+                var monstorObj = monstors[k]
+                var monstorId = monstorObj.monstorId
+                var resId = monstorConfig[monstorId.toString()].resId
+                var isNewId = monstorResIds.every(function(x){
+                    return x != resId
+                })
+                if (isNewId == true) {
+                    monstorResIds.push(resId)
                 }
             }
         }
 
-        var monstorConfig = require("monstorConfig")
-        var monstorPrefabNames = {}
-        for (var index in monstorIds) {
-            var id = monstorIds[index]
-            var prefabName = monstorConfig[id].prefabName
-            monstorPrefabNames[id] = prefabName
-        }
-        var towerPrefabNames = {}
+        var towerResIds = []
+        var towerConfig = require("towerConfig")
         for (var index in this.enabledTowerIds) {
-            var towerId = this.enabledTowerIds[index]
-            var towerConfig = require("towerConfig")[towerId.toString()]
-            towerPrefabNames[towerId.toString()] = {}
-            for (var key in towerConfig) {
-                var levelConfig = towerConfig[key]
-                var prefabName = levelConfig.prefabName
-                towerPrefabNames[towerId.toString()][key] = prefabName
+            var id = this.enabledTowerIds[index]
+            var oneTowerConfig = towerConfig[id.toString()]
+            for (var key in oneTowerConfig) {
+                var resId = oneTowerConfig[key].resId
+                var isNewId = towerResIds.every(function(x){
+                    return x != resId
+                })
+                if (isNewId == true) {
+                    towerResIds.push(resId)
+                }
             }
         }
-        var monstorPrefabsNum = Object.keys(monstorPrefabNames).length
-        var towerPrefabsNum = 0 
-        for(var key in towerPrefabNames) {
-            var levelConfig = towerPrefabNames[key]
-            towerPrefabsNum += Object.keys(levelConfig).length
-        }
 
-
-        this.resesNum = monstorPrefabsNum + towerPrefabsNum
+        this.resesNum = monstorResIds.length + towerResIds.length
         this.loadedResesNum = 0
 
-        for(var key in monstorPrefabNames) {
-            (function(key,target){
-                var prefabName = monstorPrefabNames[key]
-                var url = "prefabs/monstors/" + prefabName
-                cc.loader.loadRes(url,function(err,res){
-                    target.reses.monstors[key] = res
-                    target.loadedResesNum += 1
-                })
-            })(key,this)
+        for(var index in monstorResIds) {
+            var id = monstorResIds[index]
+            this._loadOneRes(id)
         }
-
-        for (var key in towerPrefabNames) {
-            this.reses.towers[key] = {}
-            var levelConfig = towerPrefabNames[key]
-            for (var k in levelConfig) {
-                (function(k,target){
-                    var prefabName = levelConfig[k]
-                    var url = "prefabs/towers/" + prefabName
-                    cc.loader.loadRes(url,function(err,res){
-                        target.reses.towers[key][k] = res
-                        target.loadedResesNum += 1
-                    })
-                })(k,this)
-            }
+        for (var index in towerResIds) {
+            var id = towerResIds[index]
+            this._loadOneRes(id)
         }
-
     },
 
+    _loadOneRes(givenId){
+        var resConfig = require("resConfig")
+        var obj = resConfig[givenId.toString()]
+        this.reses[givenId.toString()] = {}
+
+        var targetNum = Object.keys(obj).length
+        var currentNum = 0
+        for(var key in obj) {
+            (function(key,target){
+                var url = obj[key]
+                if (url != ""){
+                    cc.loader.loadRes(url,function(err,res){
+                        target.reses[givenId.toString()][key] = res
+                        currentNum += 1
+                        if (targetNum == currentNum) {
+                            target.loadedResesNum += 1
+                        }
+                    })
+                }
+                else {
+                    target.reses[givenId.toString()][key] = null
+                    currentNum += 1
+                    if (targetNum == currentNum) {
+                        target.loadedResesNum += 1
+                    }
+                }
+            })(key,this)
+        }
+    }
     
 
     

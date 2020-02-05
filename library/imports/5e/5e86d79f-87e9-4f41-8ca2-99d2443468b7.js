@@ -1,12 +1,12 @@
 "use strict";
 cc._RF.push(module, '5e86defh+lPQYyimdJENGi3', 'monstorConfig');
-// images/towerDefenseRes/configs/monstor/monstorConfig.js
+// configs/monstor/monstorConfig.js
 
 "use strict";
 
 var monstorConfig = {
     "10001": {
-        prefabName: "monstor_lvpang",
+        resId: 10001,
         maxHp: 100,
         moveSpeed: 10,
         magicDefense: 2,

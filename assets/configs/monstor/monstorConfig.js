@@ -1,7 +1,7 @@
 
 var monstorConfig = {
     "10001": {
-        prefabName: "monstor_lvpang",
+        resId: 10001,
         maxHp: 100,
         moveSpeed: 10,
         magicDefense: 2,
