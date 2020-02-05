@@ -187,7 +187,7 @@
       "array": [
         0,
         0,
-        534.3241424880646,
+        534.3376741349987,
         0,
         0,
         0,
@@ -1449,6 +1449,7 @@
     "_enabled": true,
     "target": null,
     "completeCallBack": null,
+    "enabledTowerIds": [],
     "_id": "82v8dBvulEl5Fx2zWm1VSz"
   },
   {

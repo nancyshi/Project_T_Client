@@ -1,6 +1,6 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/towerDefens/towers/towerMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
 cc._RF.push(module, 'ff21eOFaElLXr6G/X3gFXv6', 'towerMgr', __filename);
-// scripts/towerDefens/towerMgr.js
+// scripts/towerDefens/towers/towerMgr.js
 
 "use strict";
 
@@ -106,6 +106,7 @@ cc.Class({
         }
     },
     _acturalHurt: function _acturalHurt(monstor) {
+
         if (this.hurtRange == -1) {
             var monstorMgr = monstor.getComponent("monstorMgr");
             monstorMgr.getHurt(this.hurt, this.hurtType);
@@ -116,7 +117,7 @@ cc.Class({
                 if (oneMonstor == monstor) {
                     monstorsForHurt.push(oneMonstor);
                 } else {
-                    if (this.getDisOfTwoPoint(oneMonstor.position, monstor.position) <= this.hurtRange) {
+                    if (cc.v2(monstor.x - oneMonstor.x, monstor.y - oneMonstor.y).mag <= this.hurtRange) {
                         monstorsForHurt.push(oneMonstor);
                     }
                 }

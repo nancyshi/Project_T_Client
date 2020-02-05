@@ -41,12 +41,50 @@ cc.Class({
 
     onLoad: function onLoad() {},
     start: function start() {
-        var enabledIds = cc.find("Canvas/resNode").getComponent("resMgr").enabledTowerIds;
-        for (var index in enabledIds) {
-            var id = enabledIds[index];
+        var enabledTowerIds = cc.find("Canvas/resNode").getComponent("resMgr").enabledTowerIds;
+        for (var index in enabledTowerIds) {
+            var towerId = enabledTowerIds[index];
+            var btnIndex = parseInt(index) + 1;
+            var btnName = "btn_0" + btnIndex.toString();
+
+            var btn = this.node.getChildByName(btnName).getComponent(cc.Button);
+
+            var clickEventHandler = new cc.Component.EventHandler();
+            clickEventHandler.target = this.node;
+            clickEventHandler.component = "buildTowerUIMgr";
+            clickEventHandler.handler = "buildTower";
+            clickEventHandler.customEventData = towerId;
+
+            btn.clickEvents.push(clickEventHandler);
         }
     },
-    buildTower: function buildTower(towerId) {}
+    buildTower: function buildTower(event, towerId) {
+        var towerConfig = require("towerConfig");
+        var oneTowerConfig = towerConfig[towerId.toString()];
+        var towerLevel = 1; //for now use a fixed level
+        var towerObj = oneTowerConfig[towerLevel.toString()];
+        var resId = towerObj.resId;
+        var prefab = cc.find("Canvas/resNode").getComponent("resMgr").reses[resId.toString()].prefabName;
+
+        var tower = cc.instantiate(prefab);
+        tower.x = this.node.parent.x;
+        tower.y = this.node.parent.y;
+
+        var towerMgr = tower.getComponent("towerMgr");
+        towerMgr.hurt = towerObj.hurt;
+        towerMgr.hurtType = towerObj.hurtType;
+        towerMgr.hurtDelta = towerObj.hurtDelta;
+        towerMgr.attackRange = towerObj.attackRange;
+        towerMgr.hurtRange = towerObj.hurtRange;
+
+        var parentNode = this.node.parent;
+        this.node.parent.getComponent("towerAreaMgr").removeUI();
+
+        cc.tween(window).delay(0.2).call(function () {
+            parentNode.removeFromParent();
+            cc.find("Canvas").addChild(tower);
+        }).start();
+    }
 
     // update (dt) {},
 

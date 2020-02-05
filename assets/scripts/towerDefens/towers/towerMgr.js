@@ -104,6 +104,7 @@ cc.Class({
         }
     },
     _acturalHurt(monstor) {
+
         if (this.hurtRange == -1) {
             var monstorMgr = monstor.getComponent("monstorMgr")
             monstorMgr.getHurt(this.hurt,this.hurtType)
@@ -116,7 +117,7 @@ cc.Class({
                     monstorsForHurt.push(oneMonstor)
                 }
                 else {
-                    if (this.getDisOfTwoPoint(oneMonstor.position,monstor.position) <= this.hurtRange) {
+                    if (cc.v2(monstor.x - oneMonstor.x, monstor.y - oneMonstor.y).mag <= this.hurtRange) {
                         monstorsForHurt.push(oneMonstor)
                     }
                 }

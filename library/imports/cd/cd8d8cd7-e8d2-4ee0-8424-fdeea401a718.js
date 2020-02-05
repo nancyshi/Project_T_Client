@@ -1,5 +1,5 @@
 "use strict";
-cc._RF.push(module, 'd8930GRQ+1PKqsWGDh0V91F', 'resConfig');
+cc._RF.push(module, 'cd8d8zX6NJO4IQk/e6kAacY', 'resConfig');
 // configs/res/resConfig.js
 
 "use strict";
