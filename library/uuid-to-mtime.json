@@ -1204,11 +1204,6 @@
     "meta": 1580749225724,
     "relativePath": "scripts/towerDefens/main"
   },
-  "8eafeda0-8545-4920-8e10-33da5d2afd20": {
-    "asset": 1580753969110,
-    "meta": 1580753969730,
-    "relativePath": "configs/level/levelConfig.js"
-  },
   "e5ecc46a-f201-4866-b0a7-6fbc52b9dcb3": {
     "asset": 1580754031504,
     "meta": 1580754027890,
@@ -1245,19 +1240,14 @@
     "relativePath": "prefabs/buildTowerUI.prefab"
   },
   "35438407-33b7-45e8-a90d-0120dad556a3": {
-    "asset": 1580911704960,
-    "meta": 1580911704967,
+    "asset": 1580995092870,
+    "meta": 1580995092878,
     "relativePath": "scenes/level_01.fire"
   },
   "f9e1006a-0402-4dc4-8370-8924d2bc91c3": {
     "asset": 1580888022659,
     "meta": 1580888083335,
     "relativePath": "scripts/towerDefens/level/canvasMgr.js"
-  },
-  "1cba8c1a-ae9d-4a0a-9880-13ff23747d60": {
-    "asset": 1580888022660,
-    "meta": 1580888083369,
-    "relativePath": "scripts/towerDefens/main/mainSceneMgr.js"
   },
   "a2d6b90b-b5ea-487d-852e-6c245c43cf71": {
     "asset": 1580888022661,
@@ -1279,11 +1269,6 @@
     "meta": 1580914100707,
     "relativePath": "scenes/towerMainScene.fire"
   },
-  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
-    "asset": 1580900830377,
-    "meta": 1580900860812,
-    "relativePath": "scripts/towerDefens/level/gameMgr.js"
-  },
   "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
     "asset": 1580900830377,
     "meta": 1580900860821,
@@ -1294,19 +1279,39 @@
     "meta": 1580903350441,
     "relativePath": "configs/res/resConfig.js"
   },
-  "3afd3aee-74e1-4941-a533-3f552e334e25": {
-    "asset": 1580913810094,
-    "meta": 1580913810579,
-    "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
-  },
-  "2d40d8ab-5ea2-4970-be7d-f70b2cde06a1": {
-    "asset": 1580913881636,
-    "meta": 1580913883560,
-    "relativePath": "configs/tower/towerConfig.js"
-  },
   "ff21e385-6849-4b5e-be86-fd7de0157bfa": {
     "asset": 1580914062644,
     "meta": 1580914069358,
     "relativePath": "scripts/towerDefens/towers/towerMgr.js"
+  },
+  "8aa12369-c851-49d5-96d6-43c1e9afbfc0": {
+    "asset": 1580993486511,
+    "meta": 1580993486596,
+    "relativePath": "images/towerDefenseRes/ziyuan.png"
+  },
+  "1cba8c1a-ae9d-4a0a-9880-13ff23747d60": {
+    "asset": 1580995291021,
+    "meta": 1580995292180,
+    "relativePath": "scripts/towerDefens/main/mainSceneMgr.js"
+  },
+  "8eafeda0-8545-4920-8e10-33da5d2afd20": {
+    "asset": 1580995637275,
+    "meta": 1580995639427,
+    "relativePath": "configs/level/levelConfig.js"
+  },
+  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
+    "asset": 1580995624300,
+    "meta": 1580995639427,
+    "relativePath": "scripts/towerDefens/level/gameMgr.js"
+  },
+  "2d40d8ab-5ea2-4970-be7d-f70b2cde06a1": {
+    "asset": 1580996830404,
+    "meta": 1580996883483,
+    "relativePath": "configs/tower/towerConfig.js"
+  },
+  "3afd3aee-74e1-4941-a533-3f552e334e25": {
+    "asset": 1580997546085,
+    "meta": 1580997547776,
+    "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
   }
 }

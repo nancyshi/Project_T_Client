@@ -6,7 +6,8 @@ var towerConfig = {
             hurtType: 1,
             hurtDelta: 0.5,
             attackRange: 300,
-            hurtRange: -1
+            hurtRange: -1,
+            buildExpend: 5
         },
         "2": {
             resId: 20001,
@@ -14,7 +15,8 @@ var towerConfig = {
             hurtType: 1,
             hurtDelta: 0.5,
             attackRange: 300,
-            hurtRange: -1
+            hurtRange: -1,
+            buildExpend: 5
         }
     }
 }

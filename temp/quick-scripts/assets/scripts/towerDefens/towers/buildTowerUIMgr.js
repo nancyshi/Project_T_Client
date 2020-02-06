@@ -34,12 +34,16 @@ cc.Class({
         //     }
         // },
         buttonsConfig: null,
-        btnPrefab: cc.Prefab
+        btnPrefab: cc.Prefab,
+
+        gameMgr: null
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad: function onLoad() {},
+    onLoad: function onLoad() {
+        this.gameMgr = cc.find("Canvas/gameMgrNode").getComponent("gameMgr");
+    },
     start: function start() {
         var enabledTowerIds = cc.find("Canvas/resNode").getComponent("resMgr").enabledTowerIds;
         for (var index in enabledTowerIds) {
@@ -63,6 +67,14 @@ cc.Class({
         var oneTowerConfig = towerConfig[towerId.toString()];
         var towerLevel = 1; //for now use a fixed level
         var towerObj = oneTowerConfig[towerLevel.toString()];
+        var buildExpand = towerObj.buildExpend;
+
+        var currentResourceNum = this.gameMgr.resourceNum;
+        if (buildExpand > currentResourceNum) {
+            return;
+        }
+
+        this.gameMgr.resourceNum -= buildExpand;
         var resId = towerObj.resId;
         var prefab = cc.find("Canvas/resNode").getComponent("resMgr").reses[resId.toString()].prefabName;
 
@@ -84,10 +96,8 @@ cc.Class({
             parentNode.removeFromParent();
             cc.find("Canvas").addChild(tower);
         }).start();
-    }
-
-    // update (dt) {},
-
+    },
+    update: function update(dt) {}
 });
 
 cc._RF.pop();

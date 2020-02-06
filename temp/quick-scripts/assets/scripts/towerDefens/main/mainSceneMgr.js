@@ -54,8 +54,12 @@ cc.Class({
             var resMgr = resNode.getComponent("resMgr");
             var gameMgr = scene.getChildByName("Canvas").getChildByName("gameMgrNode").getComponent("gameMgr");
 
-            gameMgr.refreshPlanId = require("levelConfig")[sceneName].refreshPlanId;
-            gameMgr.maxHp = require("levelConfig")[sceneName].maxHp;
+            var levelConfig = require("levelConfig")[sceneName];
+            gameMgr.refreshPlanId = levelConfig.refreshPlanId;
+            gameMgr.maxHp = levelConfig.maxHp;
+            gameMgr.resourceNum = levelConfig.initResourceNum;
+            gameMgr.maxResourceNum = levelConfig.maxResourceNum;
+            gameMgr.resourceIncreaseSpeed = levelConfig.resourceIncreaseSpeed;
             resMgr.completeCallBack = completeCallBack;
             resMgr.enabledTowerIds = [20001];
             resMgr.loadNeededReses();

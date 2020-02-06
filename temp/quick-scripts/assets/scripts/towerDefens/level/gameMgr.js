@@ -101,7 +101,50 @@ cc.Class({
         },
 
         waveLabel: cc.Label,
-        hpLabel: cc.Label
+        hpLabel: cc.Label,
+        resourceLabel: cc.Label,
+        resourceProcessBar: cc.ProgressBar,
+        resourceNum: {
+            get: function get() {
+                return this._resourceNum;
+            },
+            set: function set(value) {
+                this._resourceNum = value;
+                this.resourceLabel.string = this.resourceNum.toString();
+                if (value < this.maxResourceNum) {
+                    this.isResourceIncreased = true;
+                }
+            }
+        },
+        maxResourceNum: 10,
+        resourceIncreaseSpeed: 3,
+
+        resourceNumTimer: {
+            get: function get() {
+                if (this._resourceNumTimer == null) {
+                    this._resourceNumTimer = 0;
+                }
+                return this._resourceNumTimer;
+            },
+            set: function set(value) {
+                this._resourceNumTimer = value;
+                var tempProgressValue = value / this.resourceIncreaseSpeed;
+                if (tempProgressValue > 1) {
+                    tempProgressValue = 1;
+                }
+                this.resourceProcessBar.progress = tempProgressValue;
+                if (value >= this.resourceIncreaseSpeed) {
+                    if (this.resourceNum < this.maxResourceNum) {
+                        this.resourceNum += 1;
+                        this.resourceNumTimer = 0;
+                    } else {
+                        this.isResourceIncreased = false;
+                    }
+                }
+            }
+        },
+
+        isResourceIncreased: false
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -120,7 +163,11 @@ cc.Class({
             self.startRefresh();
         }).start();
     },
-    update: function update(dt) {},
+    update: function update(dt) {
+        if (this.isResourceIncreased == true) {
+            this.resourceNumTimer += dt;
+        }
+    },
     startRefresh: function startRefresh() {
         this.currentWaveIndex = 1;
     },
