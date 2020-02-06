@@ -1265,8 +1265,8 @@
     "relativePath": "configs/monstor/monstorConfig.js"
   },
   "80e6beff-f1a3-4502-9020-d646f603cf33": {
-    "asset": 1580914100701,
-    "meta": 1580914100707,
+    "asset": 1581005863769,
+    "meta": 1581005863777,
     "relativePath": "scenes/towerMainScene.fire"
   },
   "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
@@ -1278,11 +1278,6 @@
     "asset": 1580900830376,
     "meta": 1580903350441,
     "relativePath": "configs/res/resConfig.js"
-  },
-  "ff21e385-6849-4b5e-be86-fd7de0157bfa": {
-    "asset": 1580914062644,
-    "meta": 1580914069358,
-    "relativePath": "scripts/towerDefens/towers/towerMgr.js"
   },
   "8aa12369-c851-49d5-96d6-43c1e9afbfc0": {
     "asset": 1580993486511,
@@ -1310,8 +1305,13 @@
     "relativePath": "configs/tower/towerConfig.js"
   },
   "3afd3aee-74e1-4941-a533-3f552e334e25": {
-    "asset": 1580997546085,
-    "meta": 1580997547776,
+    "asset": 1581003744125,
+    "meta": 1581005863012,
     "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
+  },
+  "ff21e385-6849-4b5e-be86-fd7de0157bfa": {
+    "asset": 1581005819317,
+    "meta": 1581005863012,
+    "relativePath": "scripts/towerDefens/towers/towerMgr.js"
   }
 }

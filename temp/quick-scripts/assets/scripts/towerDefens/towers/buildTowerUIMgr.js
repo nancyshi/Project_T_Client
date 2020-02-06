@@ -35,7 +35,6 @@ cc.Class({
         // },
         buttonsConfig: null,
         btnPrefab: cc.Prefab,
-
         gameMgr: null
     },
 
