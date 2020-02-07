@@ -1,6 +1,6 @@
-(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/towerDefens/level/canvasMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, 'f9e10BqBAJNxINwiSTSvJHD', 'canvasMgr', __filename);
-// scripts/towerDefens/level/canvasMgr.js
+(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/towerDefens/towers/towerUIMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
+cc._RF.push(module, '4e2e6Ze4lBNw43ftxhbks4+', 'towerUIMgr', __filename);
+// scripts/towerDefens/towers/towerUIMgr.js
 
 "use strict";
 
@@ -33,30 +33,18 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        btnPrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad: function onLoad() {
-        this.node.on("touchend", this.onTouchend, this);
-    },
-    start: function start() {},
-    onTouchend: function onTouchend(event) {
-        for (var index in this.node.children) {
-            var oneNode = this.node.children[index];
-            if (oneNode.getComponent("towerAreaMgr") != null) {
-                oneNode.getComponent("towerAreaMgr").removeUI();
-            } else if (oneNode.getComponent("towerMgr") != null) {
-                oneNode.getComponent("towerMgr").removeTowerUI();
-            }
-        }
-    },
-    onDestroy: function onDestroy() {
-        this.node.off("touchend", this.onTouchend, this);
-    }
-    // update (dt) {},
+    // onLoad () {},
 
-});
+    start: function start() {}
+}
+
+// update (dt) {},
+);
 
 cc._RF.pop();
         }
@@ -69,5 +57,5 @@ cc._RF.pop();
             });
         }
         })();
-        //# sourceMappingURL=canvasMgr.js.map
+        //# sourceMappingURL=towerUIMgr.js.map
         

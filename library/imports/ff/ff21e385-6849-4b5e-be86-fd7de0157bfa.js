@@ -44,13 +44,17 @@ cc.Class({
         bulletEffectPrefab: cc.Prefab,
         hurtEffectPrefab: cc.Prefab,
         bulletEffectOffset: cc.v2(0, 0),
-        currentEffect: null
+        currentEffect: null,
+        isUIShowed: false,
+        currentUI: null,
+        towerUIPrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
-
+    onLoad: function onLoad() {
+        this.node.getChildByName("touchNode").on("touchend", this.onTouchEnd, this);
+    },
     start: function start() {
         this.monstors = cc.find("Canvas/gameMgrNode").getComponent("gameMgr").alivedMonstors;
     },
@@ -94,9 +98,6 @@ cc.Class({
         animate.play("attack");
     },
     playEffect: function playEffect() {
-        // if (this.currentEffect != null) {
-        //     cc.find("Canvas").addChild(this.currentEffect)
-        // }
         var effectType = this.currentEffect.getComponent("effectMgr").effectType;
         if (effectType == 1) {
             cc.find("Canvas").addChild(this.currentEffect);
@@ -131,7 +132,37 @@ cc.Class({
                 }
             }
         }
-    }
+    },
+    onTouchEnd: function onTouchEnd(event) {
+        if (this.isUIShowed == false) {
+            this.showTowerUI();
+        }
+        event.stopPropagation();
+    },
+    onDestroy: function onDestroy() {
+        this.node.getChildByName("touchNode").off("touchend", this.onTouchEnd, this);
+    },
+    showTowerUI: function showTowerUI() {
+        var ui = cc.instantiate(this.towerUIPrefab);
+        this.currentUI = ui;
+        ui.scale = 0;
+        ui.x = 0;
+        ui.y = 26.333;
+        this.isUIShowed = true;
+        this.node.addChild(ui);
+        cc.tween(ui).to(0.2, { scale: 1.2 }).start();
+    },
+    removeTowerUI: function removeTowerUI() {
+        if (this.isUIShowed == true) {
+            var self = this;
+            cc.tween(this.currentUI).to(0.2, { scale: 0 }).call(function () {
+                self.currentUI.removeFromParent();
+                self.currentUI = null;
+                self.isUIShowed = false;
+            }).start();
+        }
+    },
+    releaseSkill: function releaseSkill(skillId) {}
 });
 
 cc._RF.pop();

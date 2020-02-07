@@ -44,6 +44,9 @@ cc.Class({
             if (oneNode.getComponent("towerAreaMgr") != null) {
                 oneNode.getComponent("towerAreaMgr").removeUI()
             }
+            else if (oneNode.getComponent("towerMgr") != null) {
+                oneNode.getComponent("towerMgr").removeTowerUI()
+            }
         }
     },
     onDestroy(){

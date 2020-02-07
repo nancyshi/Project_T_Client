@@ -575,7 +575,7 @@
     "relativePath": "tiledMaps/level_01/testSheet.png"
   },
   "e351350c-e0f9-4197-a2ca-903d671b93f6": {
-    "asset": 1580830378159,
+    "asset": 1580993486514,
     "meta": 1579617779742,
     "relativePath": "images/towerDefenseRes"
   },
@@ -1095,8 +1095,8 @@
     "relativePath": "images/towerDefenseRes/towers/acherTower_101_01/arrow.prefab"
   },
   "f764063c-c5f7-45b5-a511-223939eb84bf": {
-    "asset": 1580483338587,
-    "meta": 1580483338637,
+    "asset": 1581084742635,
+    "meta": 1581084742639,
     "relativePath": "resources/prefabs/towers/acherTow_101_01.prefab"
   },
   "26f0d278-b43d-4eb9-9e42-d728048851b3": {
@@ -1179,11 +1179,6 @@
     "meta": 1580745608921,
     "relativePath": "configs/refresh/refreshConfig.js"
   },
-  "88d66b7e-a57e-44f1-8951-4b5236726423": {
-    "asset": 1580745596240,
-    "meta": 1580745609080,
-    "relativePath": "scripts/towerDefens/monstors/monstorMgr.js"
-  },
   "de11c9eb-5d52-4977-979d-0a4581a84df9": {
     "asset": 1580747334466,
     "meta": 1580747287415,
@@ -1240,14 +1235,9 @@
     "relativePath": "prefabs/buildTowerUI.prefab"
   },
   "35438407-33b7-45e8-a90d-0120dad556a3": {
-    "asset": 1580995092870,
-    "meta": 1580995092878,
+    "asset": 1581083364510,
+    "meta": 1581083364516,
     "relativePath": "scenes/level_01.fire"
-  },
-  "f9e1006a-0402-4dc4-8370-8924d2bc91c3": {
-    "asset": 1580888022659,
-    "meta": 1580888083335,
-    "relativePath": "scripts/towerDefens/level/canvasMgr.js"
   },
   "a2d6b90b-b5ea-487d-852e-6c245c43cf71": {
     "asset": 1580888022661,
@@ -1265,8 +1255,8 @@
     "relativePath": "configs/monstor/monstorConfig.js"
   },
   "80e6beff-f1a3-4502-9020-d646f603cf33": {
-    "asset": 1581005863769,
-    "meta": 1581005863777,
+    "asset": 1581083190754,
+    "meta": 1581083190761,
     "relativePath": "scenes/towerMainScene.fire"
   },
   "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
@@ -1309,9 +1299,29 @@
     "meta": 1581005863012,
     "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
   },
+  "88d66b7e-a57e-44f1-8951-4b5236726423": {
+    "asset": 1581006270686,
+    "meta": 1581006641024,
+    "relativePath": "scripts/towerDefens/monstors/monstorMgr.js"
+  },
+  "2070e716-8d3b-4e52-ab8b-01efc7f5f11b": {
+    "asset": 1581082377131,
+    "meta": 1581082377139,
+    "relativePath": "prefabs/towerUI.prefab"
+  },
+  "4e2e665e-e250-4dc3-8ddf-b7185b92ce3e": {
+    "asset": 1581081109693,
+    "meta": 1581082346355,
+    "relativePath": "scripts/towerDefens/towers/towerUIMgr.js"
+  },
+  "f9e1006a-0402-4dc4-8370-8924d2bc91c3": {
+    "asset": 1581085667073,
+    "meta": 1581085698789,
+    "relativePath": "scripts/towerDefens/level/canvasMgr.js"
+  },
   "ff21e385-6849-4b5e-be86-fd7de0157bfa": {
-    "asset": 1581005819317,
-    "meta": 1581005863012,
+    "asset": 1581085696593,
+    "meta": 1581085698789,
     "relativePath": "scripts/towerDefens/towers/towerMgr.js"
   }
 }

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '88d66t+pX5E8YlRS1I2cmQj', 'monstorMgr');
-// scripts/towerDefens/monstorMgr.js
+// scripts/towerDefens/monstors/monstorMgr.js
 
 "use strict";
 
@@ -179,17 +179,6 @@ cc.Class({
                     this.state = 2;
                 }
             }
-
-            // for (var index in this.mapMgr.soldiers) {
-            //     var oneSoldier = this.mapMgr.soldiers[index]
-            //     var dis = this.getDisOfTwoPoint(this.node.position,oneSoldier.position)
-            //     if (dis <= this.attackRange) {
-            //         this.currentEnmy = oneSoldier
-            //         this.state = 4
-            //         break
-            //     }
-            // }
-
         } else if (this.state == 4) {
             if (this.canAttack == true) {
                 this.canAttack = false;
