@@ -1140,7 +1140,7 @@
     "relativePath": "images/towerDefenseRes/eclips.png"
   },
   "418880cd-4c5e-4eea-8471-e8a99c12c04c": {
-    "asset": 1580888022658,
+    "asset": 1581081008743,
     "meta": 1580567420624,
     "relativePath": "prefabs"
   },
@@ -1185,7 +1185,7 @@
     "relativePath": "scripts/towerDefens/monstors"
   },
   "60afb502-ba47-49fe-aa3b-ccc1e2f10fa4": {
-    "asset": 1580888022661,
+    "asset": 1581081030369,
     "meta": 1580747342945,
     "relativePath": "scripts/towerDefens/towers"
   },
@@ -1255,8 +1255,8 @@
     "relativePath": "configs/monstor/monstorConfig.js"
   },
   "80e6beff-f1a3-4502-9020-d646f603cf33": {
-    "asset": 1581083190754,
-    "meta": 1581083190761,
+    "asset": 1581097688899,
+    "meta": 1581097688905,
     "relativePath": "scenes/towerMainScene.fire"
   },
   "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
@@ -1309,11 +1309,6 @@
     "meta": 1581082377139,
     "relativePath": "prefabs/towerUI.prefab"
   },
-  "4e2e665e-e250-4dc3-8ddf-b7185b92ce3e": {
-    "asset": 1581081109693,
-    "meta": 1581082346355,
-    "relativePath": "scripts/towerDefens/towers/towerUIMgr.js"
-  },
   "f9e1006a-0402-4dc4-8370-8924d2bc91c3": {
     "asset": 1581085667073,
     "meta": 1581085698789,
@@ -1323,5 +1318,10 @@
     "asset": 1581085696593,
     "meta": 1581085698789,
     "relativePath": "scripts/towerDefens/towers/towerMgr.js"
+  },
+  "4e2e665e-e250-4dc3-8ddf-b7185b92ce3e": {
+    "asset": 1581097638559,
+    "meta": 1581097685332,
+    "relativePath": "scripts/towerDefens/towers/towerUIMgr.js"
   }
 }
