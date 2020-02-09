@@ -161,8 +161,7 @@ cc.Class({
                 self.isUIShowed = false;
             }).start();
         }
-    },
-    releaseSkill: function releaseSkill(skillId) {}
+    }
 });
 
 cc._RF.pop();

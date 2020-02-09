@@ -6,6 +6,10 @@ var resConfig = {
     "20001": {
         prefabName: "prefabs/towers/acherTow_101_01",
         iconName: ""
+    },
+    "30001": {
+        prefabName: "prefabs/effect/arrow",
+        iconName: ""
     }
 }
 

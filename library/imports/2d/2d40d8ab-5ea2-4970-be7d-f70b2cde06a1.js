@@ -13,7 +13,8 @@ var towerConfig = {
             hurtDelta: 0.5,
             attackRange: 300,
             hurtRange: -1,
-            buildExpend: 5
+            buildExpend: 5,
+            skills: [20001001]
         },
         "2": {
             resId: 20001,
@@ -22,7 +23,8 @@ var towerConfig = {
             hurtDelta: 0.5,
             attackRange: 300,
             hurtRange: -1,
-            buildExpend: 5
+            buildExpend: 5,
+            skills: [20001001]
         }
     }
 };

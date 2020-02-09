@@ -173,11 +173,6 @@ cc.Class({
         }
     },
     
-    releaseSkill(skillId) {
-        
-    }
-    
-
 
     
 });
