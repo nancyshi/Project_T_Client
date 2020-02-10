@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '49a29BnaU9O+4waV7Hwj3m8', 'effectMgr');
-// scripts/towerDefens/effectMgr.js
+// scripts/towerDefens/monstors/effectMgr.js
 
 "use strict";
 

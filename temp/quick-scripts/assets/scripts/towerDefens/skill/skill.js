@@ -14,7 +14,7 @@ cc._RF.push(module, '6ff0bqTs6FJ659N/UPKmCbC', 'skill', __filename);
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-cc.Class({
+var Skill = cc.Class({
 
     properties: {
         // foo: {
@@ -34,6 +34,7 @@ cc.Class({
         // },
         id: cc.Integer,
         skillType: 1, //while 1 indicate initiative skill , and 2 is passivity skill
+        hurtType: 1, //1 is physical , 2 is magical
         target: cc.Node,
         owner: cc.Node
     },
@@ -100,11 +101,21 @@ cc.Class({
         var skillConfig = require("skillConfig")[this.id.toString()];
         var hurtCoefficient = skillConfig.hurtCoefficient;
         var additionalBuffId = skillConfig.additionalBuffId;
+
+        //both tower and monstor will have the ability to release skill
+        //they will both have a commponent named "battleElementMgr"
+        var battleElementMgr = this.owner.getComponent("battleElementMgr");
+        var hurtNum = battleElementMgr.hurt * hurtCoefficient;
+
+        this.target.getComponent("battleElementMgr").getHurt(hurtNum, this.hurtType);
+        this.target.getComponent("battleElementMgr").getBuff(additionalBuffId);
     }
+}
 
-    // update (dt) {},
+// update (dt) {},
+);
 
-});
+module.exports = Skill;
 
 cc._RF.pop();
         }

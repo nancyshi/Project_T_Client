@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '319d9Rl44dPPrysy69h3p6Z', 'soldierMgr');
-// scripts/towerDefens/soldierMgr.js
+// scripts/towerDefens/monstors/soldierMgr.js
 
 "use strict";
 

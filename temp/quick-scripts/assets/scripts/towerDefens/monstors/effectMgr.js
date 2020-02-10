@@ -1,6 +1,6 @@
 (function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/towerDefens/monstors/effectMgr.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
 cc._RF.push(module, '49a29BnaU9O+4waV7Hwj3m8', 'effectMgr', __filename);
-// scripts/towerDefens/effectMgr.js
+// scripts/towerDefens/monstors/effectMgr.js
 
 "use strict";
 

@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '626a8aWWcpLkKl5Wdwml2ih', 'mapMgr');
-// scripts/towerDefens/mapMgr.js
+// scripts/towerDefens/level/mapMgr.js
 
 "use strict";
 
