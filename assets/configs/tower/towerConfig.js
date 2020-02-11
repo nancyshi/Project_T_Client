@@ -3,22 +3,24 @@ var towerConfig = {
         "1": {
             resId: 20001,
             hurt: 100,
-            hurtType: 1,
-            hurtDelta: 0.5,
-            attackRange: 300,
-            hurtRange: -1,
-            buildExpend: 5,
-            skills: [20001001]
+            buildExpend: 2,
+            skills: {
+                "20001001": {
+                    isCommonSkill: 1,
+                    cd: 1
+                }
+            }
         },
         "2": {
             resId: 20001,
             hurt: 150,
-            hurtType: 1,
-            hurtDelta: 0.5,
-            attackRange: 300,
-            hurtRange: -1,
             buildExpend: 5,
-            skills: [20001001]
+            skills: {
+                "20001001": {
+                    isCommonSkill: 1,
+                    cd: 1
+                }
+            }
         }
     }
 }

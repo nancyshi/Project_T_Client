@@ -20,11 +20,15 @@ cc.Class({
             },
             set(value) {
                 this._state = value
-                if (value == 2) {
+                if (value == 1) {
+                    var animComp = this.node.getComponent(cc.Animation)
+                    animComp.play("walk")
+                }
+                else if (value == 2) {
                     this.onReachFinalTarget()
                 }
                 else if (value == 3) {
-                    this.onDie()
+
                 }
             }
         //STATE ENUM
@@ -34,99 +38,12 @@ cc.Class({
         //3 die
         //4 battle
         },
-        maxHealth: {
-            get() {
-                if (this._maxHeath == null) {
-                    this._maxHeath = 100
-                    return this._maxHeath
-                }
-                else {
-                    return this._maxHeath
-                }
-            },
-            set(value) {
-                this._maxHeath = value
-                var processBar = this.node.getChildByName("heathProcessBar").getComponent(cc.ProgressBar)
-                processBar.progress = this.health / value
-            }
-        },
-        health: {
-            get() {
-                if (this._heath == null) {
-                    this._heath = 100
-                    return this._heath
-                }
-                else {
-                    return this._heath
-                }
-            },
-            set(value) {
-                this._heath = value
-                var processBar = this.node.getChildByName("heathProcessBar").getComponent(cc.ProgressBar)
-                processBar.progress = value / this.maxHealth
-            }
-        },
-        isHeathBarHidden: {
-            get() {
-                if (this._isHeathBarHidden == null) {
-                    this._isHeathBarHidden = true
-                }
-                return this._isHeathBarHidden
-            },
-            set(value) {
-                this._isHeathBarHidden = value
-                var heathBarNode = this.node.getChildByName("heathProcessBar")
-                
-                heathBarNode.active = !value
-            }
-        },
-        heathBarShowLastTime: {
-            get() {
-                return this._heathBarShowLastTime
-            },
-            set(value) {
-                this._heathBarShowLastTime = value
-                if (value <= 0) {
-                    this.isHeathBarHidden = true
-                }
-            }
-        },
-        moveSpeed: 100,
 
-        target: null,
+        moveSpeed: 100,
         vx: null,
         vy: null,
         targetIndex: 1,
         gameMgr: null,
-
-        //battle properties
-        hurt: 10,
-        attackRange: 10,
-        hurtRange: -1,
-        hurtDelta: 0.5,
-        hurtType: 1, // while 1 indicate physical ,and 2 indicate magic
-        physicalDefense: 2,
-        magicDefense: 0,
-        currentEnmy: null,
-
-        canAttack: {
-            get() {
-                if (this._canAttack == null) {
-                    this._canAttack = true
-                }
-                return this._canAttack
-            },
-
-            set(value) {
-                this._canAttack = value
-                if (value == false) {
-                    var self = this
-                    this.scheduleOnce(function(){
-                        self.canAttack = true
-                    },this.hurtDelta)
-                }
-            }
-        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -142,12 +59,8 @@ cc.Class({
         this.vx = (this.target.x - this.node.x) / t
         this.vy = (this.target.y - this.node.y) / t
 
-        this.maxHealth = 100
-        this.health = 100
         this.gameMgr = cc.find("Canvas/gameMgrNode").getComponent("gameMgr")
         this.state = 1
-        var anim = this.node.getComponent(cc.Animation)
-        anim.play("walk")
     },
 
     update (dt) {
@@ -181,18 +94,6 @@ cc.Class({
                     this.state = 2
                 }
             }
-
-        }
-
-        else if (this.state == 4) {
-            if (this.canAttack == true) {
-                this.canAttack = false
-                this.attackEnmy()
-            }
-        }
-
-        if (this.heathBarShowLastTime > 0 ) {
-            this.heathBarShowLastTime -= dt
         }
     },
 
@@ -225,7 +126,7 @@ cc.Class({
     },
 
     onDie() {
-        
+        this.state = 3
         var temp = null
         for (var index in this.gameMgr.alivedMonstors) {
             if (this.node == this.gameMgr.alivedMonstors[index]) {
@@ -250,38 +151,4 @@ cc.Class({
             .start()
     },
 
-    getHurt(hurtNum,givenType) {
-        this.heathBarShowLastTime = 3
-        this.isHeathBarHidden = false
-        var acturalHurt = null
-        switch(givenType) {
-            case 1:
-                acturalHurt = hurtNum * hurtNum / (hurtNum + this.physicalDefense)
-                break
-            case 2: 
-                acturalHurt = hurtNum  * hurtNum/ (hurtNum + this.magicDefense)
-                break
-            default:
-                acturalHurt = hurtNum * hurtNum / (hurtNum  + this.physicalDefense)
-
-        }
-
-        var temp = this.health - acturalHurt
-        if (temp <= 0) {
-            this.health = 0
-            this.state = 3
-        }
-        else {
-            this.health = temp
-        }
-    },
-
-    attackEnmy() {
-        var anim = this.node.getComponent(cc.Animation)
-        anim.play("attack")
-    },
-
-    hurtEnmy() {
-        this.currentEnmy.getHurt(this.hurt,this.hurtType)
-    }
 });

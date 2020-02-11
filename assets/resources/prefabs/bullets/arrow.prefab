@@ -133,17 +133,16 @@
     "_id": ""
   },
   {
-    "__type__": "49a29BnaU9O+4waV7Hwj3m8",
+    "__type__": "e0d7beBYB9PUJEPWjzZ2dmw",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
+    "moveSpeed": 0,
+    "delegate": null,
     "target": null,
-    "moveSpeed": 500,
-    "hurt": 100,
-    "hurtType": 1,
     "_id": ""
   },
   {

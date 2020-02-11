@@ -85,6 +85,7 @@ cc.Class({
                 }
             }
         },
+        towers: [],
 
         maxHp: 10,
         currentHp: {
@@ -188,8 +189,16 @@ cc.Class({
         this.alivedMonstors.push(monstor);
         this.alivedMonstorsNum = this.alivedMonstors.length;
 
+        var config = require("monstorConfig")[monstorId.toString()];
         var monstorMgr = monstor.getComponent("monstorMgr");
         monstorMgr.basePathPoints = this.mapMgr.pathes[pathId.toString()];
+        monstorMgr.moveSpeed = config.moveSpeed;
+
+        var battleElementMgr = monstor.getComponent("battleElementMgr");
+        battleElementMgr.maxHp = config.maxHp;
+        battleElementMgr.magicalDefense = config.magicalDefense;
+        battleElementMgr.physicalDefense = config.physicalDefense;
+        battleElementMgr.delegate = monstorMgr;
 
         cc.find("Canvas").addChild(monstor);
         if (this.currentMonstorIndex < this.monstorsNumOfCurrentWave) {

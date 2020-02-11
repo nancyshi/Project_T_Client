@@ -27,19 +27,44 @@ cc.Class({
                 return this._currentHp;
             },
             set: function set(value) {
+                if (value > this.maxHp) {
+                    value = this.maxHp;
+                } else if (value < 0) {
+                    value = 0;
+                }
+
                 this._currentHp = value;
+                if (this.delegate != null && value == 0) {
+                    this.delegate.onDie();
+                }
+                if (this.hpBar) {
+                    this.hpBar.progress = this.currentHp / this.maxHp;
+                }
             }
         },
         hurt: 100,
-        attckRange: 300,
-        hurtRange: -1,
 
         physicalDefense: 100,
         magicalDefense: 200,
 
         hpBar: cc.ProgressBar,
         isAutoHideHpBar: true,
-        hpBarContinueTime: 3 //when on attack, the hp bar will auto appear, and last for this time , mesured by second
+        hpBarContinueTime: 3, //when on attack, the hp bar will auto appear, and last for this time , mesured by second
+
+        _hpBarLastTimer: {
+            get: function get() {
+                return this.__hpBarLastTimer;
+            },
+            set: function set(value) {
+                this.__hpBarLastTimer = value;
+                if (value >= this.hpBarContinueTime) {
+                    this._hpBarLastTimer = null;
+                    this.hpBar.node.active = false;
+                }
+            }
+        },
+
+        delegate: null
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -48,6 +73,7 @@ cc.Class({
 
     start: function start() {},
     getHurt: function getHurt(hurtNum, hurtType) {
+        this._appearHpBar();
         if (hurtNum > 0) {
             //hurt flow
             var actureHurt = null;
@@ -73,9 +99,20 @@ cc.Class({
             this.currentHp += hurtNum;
         }
     },
-    getBuff: function getBuff(buffId) {}
-    // update (dt) {},
-
+    getBuff: function getBuff(buffId) {},
+    update: function update(dt) {
+        if (this.isAutoHideHpBar == true && this._hpBarLastTimer != null) {
+            this._hpBarLastTimer += dt;
+        }
+    },
+    _appearHpBar: function _appearHpBar() {
+        if (this.hpBar.node.active == false) {
+            this.hpBar.node.active = true;
+            if (this.isAutoHideHpBar == true) {
+                this._hpBarLastTimer = 0;
+            }
+        }
+    }
 });
 
 cc._RF.pop();

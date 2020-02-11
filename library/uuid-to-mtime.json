@@ -550,7 +550,7 @@
     "relativePath": "scripts/shootScripts/moveMgr.js"
   },
   "4da132ac-3e44-4b85-a6a7-f776eb71d32b": {
-    "asset": 1581271764000,
+    "asset": 1581321055607,
     "meta": 1579617779000,
     "relativePath": "scripts/towerDefens"
   },
@@ -1085,23 +1085,23 @@
     "relativePath": "images/towerDefenseRes/towers/acherTower_101_01"
   },
   "22bf36e4-6ad7-4614-bba4-ce8affdc6e2c": {
-    "asset": 1580220171000,
-    "meta": 1581318078108,
+    "asset": 1581412829861,
+    "meta": 1581412829867,
     "relativePath": "images/towerDefenseRes/towers/acherTower_101_01/attack.anim"
   },
   "df327cc4-0da9-4b81-8824-c71072fdc790": {
-    "asset": 1580237962000,
-    "meta": 1581318078106,
-    "relativePath": "images/towerDefenseRes/towers/acherTower_101_01/arrow.prefab"
+    "asset": 1581412758818,
+    "meta": 1581412758823,
+    "relativePath": "resources/prefabs/bullets/arrow.prefab"
   },
   "f764063c-c5f7-45b5-a511-223939eb84bf": {
-    "asset": 1581084742000,
-    "meta": 1581318078492,
+    "asset": 1581413026001,
+    "meta": 1581413026005,
     "relativePath": "resources/prefabs/towers/acherTow_101_01.prefab"
   },
   "26f0d278-b43d-4eb9-9e42-d728048851b3": {
-    "asset": 1580302702000,
-    "meta": 1581318078490,
+    "asset": 1581328921887,
+    "meta": 1581328921893,
     "relativePath": "resources/prefabs/monstors/monstor_lvpang.prefab"
   },
   "98860834-0e69-456d-b3b6-78ce2051b88a": {
@@ -1244,20 +1244,10 @@
     "meta": 1580900830000,
     "relativePath": "configs/res"
   },
-  "5e86d79f-87e9-4f41-8ca2-99d2443468b7": {
-    "asset": 1580900830000,
-    "meta": 1581318077977,
-    "relativePath": "configs/monstor/monstorConfig.js"
-  },
   "80e6beff-f1a3-4502-9020-d646f603cf33": {
-    "asset": 1581323695960,
-    "meta": 1581323695969,
+    "asset": 1581447281360,
+    "meta": 1581447281367,
     "relativePath": "scenes/towerMainScene.fire"
-  },
-  "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
-    "asset": 1580900830000,
-    "meta": 1581318078875,
-    "relativePath": "scripts/towerDefens/level/resMgr.js"
   },
   "8aa12369-c851-49d5-96d6-43c1e9afbfc0": {
     "asset": 1580993486000,
@@ -1273,21 +1263,6 @@
     "asset": 1580995637000,
     "meta": 1581318077964,
     "relativePath": "configs/level/levelConfig.js"
-  },
-  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
-    "asset": 1580995624000,
-    "meta": 1581318078831,
-    "relativePath": "scripts/towerDefens/level/gameMgr.js"
-  },
-  "3afd3aee-74e1-4941-a533-3f552e334e25": {
-    "asset": 1581003744000,
-    "meta": 1581318079070,
-    "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
-  },
-  "88d66b7e-a57e-44f1-8951-4b5236726423": {
-    "asset": 1581006270000,
-    "meta": 1581318079013,
-    "relativePath": "scripts/towerDefens/monstors/monstorMgr.js"
   },
   "2070e716-8d3b-4e52-ab8b-01efc7f5f11b": {
     "asset": 1581082377000,
@@ -1309,44 +1284,74 @@
     "meta": 1581271764000,
     "relativePath": "configs/skill"
   },
-  "2d40d8ab-5ea2-4970-be7d-f70b2cde06a1": {
-    "asset": 1581271764000,
-    "meta": 1581318078007,
-    "relativePath": "configs/tower/towerConfig.js"
-  },
-  "ff21e385-6849-4b5e-be86-fd7de0157bfa": {
-    "asset": 1581271764000,
-    "meta": 1581318079107,
-    "relativePath": "scripts/towerDefens/towers/towerMgr.js"
-  },
   "d401b488-d5c9-43f2-ae2b-4c12cecd3c26": {
     "asset": 1581271764000,
     "meta": 1581271764000,
     "relativePath": "scripts/towerDefens/skill"
   },
+  "88d66b7e-a57e-44f1-8951-4b5236726423": {
+    "asset": 1581328865542,
+    "meta": 1581328895741,
+    "relativePath": "scripts/towerDefens/monstors/monstorMgr.js"
+  },
+  "3afd3aee-74e1-4941-a533-3f552e334e25": {
+    "asset": 1581412693550,
+    "meta": 1581412698618,
+    "relativePath": "scripts/towerDefens/towers/buildTowerUIMgr.js"
+  },
+  "ff21e385-6849-4b5e-be86-fd7de0157bfa": {
+    "asset": 1581436224035,
+    "meta": 1581436398496,
+    "relativePath": "scripts/towerDefens/towers/towerMgr.js"
+  },
+  "322af786-427b-46b6-8535-81cbf3e9c11b": {
+    "asset": 1581438038667,
+    "meta": 1581438038668,
+    "relativePath": "resources/prefabs/bullets"
+  },
   "cd8d8cd7-e8d2-4ee0-8424-fdeea401a718": {
-    "asset": 1581271764000,
-    "meta": 1581318077995,
+    "asset": 1581438089230,
+    "meta": 1581438090395,
     "relativePath": "configs/res/resConfig.js"
   },
-  "e0d7b781-601f-4f50-910f-5a3cd9d9d9b0": {
-    "asset": 1581271764000,
-    "meta": 1581318079041,
-    "relativePath": "scripts/towerDefens/skill/bulletMgr.js"
-  },
-  "0a95ffbd-78eb-4b81-bd02-14e75bd8ae65": {
-    "asset": 1581271764000,
-    "meta": 1581318078005,
-    "relativePath": "configs/skill/skillConfig.js"
-  },
   "6ff0ba93-b3a1-49eb-9f4d-fd43ca9826c2": {
-    "asset": 1581321797726,
-    "meta": 1581322321076,
+    "asset": 1581442880972,
+    "meta": 1581442886769,
     "relativePath": "scripts/towerDefens/skill/skill.js"
   },
+  "0a95ffbd-78eb-4b81-bd02-14e75bd8ae65": {
+    "asset": 1581443288118,
+    "meta": 1581443288598,
+    "relativePath": "configs/skill/skillConfig.js"
+  },
+  "08143455-26d0-4f1a-b1c7-a1ab888fd4d6": {
+    "asset": 1581444731673,
+    "meta": 1581444829563,
+    "relativePath": "scripts/towerDefens/level/resMgr.js"
+  },
+  "e0d7b781-601f-4f50-910f-5a3cd9d9d9b0": {
+    "asset": 1581445543841,
+    "meta": 1581445544647,
+    "relativePath": "scripts/towerDefens/skill/bulletMgr.js"
+  },
+  "dcf0ef0b-c983-4eb6-a24d-3e7de5d13a26": {
+    "asset": 1581446380126,
+    "meta": 1581446397342,
+    "relativePath": "scripts/towerDefens/level/gameMgr.js"
+  },
+  "5e86d79f-87e9-4f41-8ca2-99d2443468b7": {
+    "asset": 1581446629140,
+    "meta": 1581446629590,
+    "relativePath": "configs/monstor/monstorConfig.js"
+  },
   "1cf0d8e3-068b-4ca5-9cfe-ada96461aa88": {
-    "asset": 1581323268282,
-    "meta": 1581323283768,
+    "asset": 1581447071703,
+    "meta": 1581447074335,
     "relativePath": "scripts/towerDefens/battleElementMgr.js"
+  },
+  "2d40d8ab-5ea2-4970-be7d-f70b2cde06a1": {
+    "asset": 1581447237267,
+    "meta": 1581447237871,
+    "relativePath": "configs/tower/towerConfig.js"
   }
 }

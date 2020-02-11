@@ -34,10 +34,13 @@
       },
       {
         "__id__": 12
+      },
+      {
+        "__id__": 13
       }
     ],
     "_prefab": {
-      "__id__": 13
+      "__id__": 14
     },
     "_opacity": 255,
     "_color": {
@@ -259,7 +262,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "26f0d278-b43d-4eb9-9e42-d728048851b3"
     },
     "fileId": "beIShtG21MhLmLvHRU2Vob",
     "sync": false
@@ -319,7 +322,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "26f0d278-b43d-4eb9-9e42-d728048851b3"
     },
     "fileId": "18IlYtwWxP574b1EQVr+BR",
     "sync": false
@@ -368,19 +371,10 @@
     "_enabled": true,
     "basePathPoints": [],
     "moveSpeed": 100,
-    "target": null,
     "vx": null,
     "vy": null,
     "targetIndex": 1,
-    "mapMgr": null,
-    "hurt": 10,
-    "attackRange": 10,
-    "hurtRange": -1,
-    "hurtDelta": 0.5,
-    "hurtType": 1,
-    "physicalDefense": 2,
-    "magicDefense": 0,
-    "currentEnmy": null,
+    "gameMgr": null,
     "_id": ""
   },
   {
@@ -430,12 +424,32 @@
     "_id": ""
   },
   {
+    "__type__": "1cf0djjBotMpZz+ralkYaqI",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "maxHp": 100,
+    "hurt": 100,
+    "physicalDefense": 100,
+    "magicalDefense": 200,
+    "hpBar": {
+      "__id__": 7
+    },
+    "isAutoHideHpBar": true,
+    "hpBarContinueTime": 3,
+    "delegate": null,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "26f0d278-b43d-4eb9-9e42-d728048851b3"
     },
     "fileId": "a0lUiqOA9H/ZJ94hW4nstA",
     "sync": false

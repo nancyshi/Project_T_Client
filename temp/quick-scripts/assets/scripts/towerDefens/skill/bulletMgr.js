@@ -33,17 +33,51 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
+        moveSpeed: 0,
+        delegate: null,
+        target: cc.Node,
+        targetLastPosition: null
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
 
-    start: function start() {}
-}
+    start: function start() {
+        var manager = cc.director.getCollisionManager();
+        manager.enabled = true;
+    },
+    update: function update(dt) {
+        var originDirection = null;
+        if (this.target.getComponent("battleElementMgr").currentHp > 0) {
+            originDirection = cc.v2(this.target.x - this.node.x, this.target.y - this.node.y);
+            this.targetLastPosition = cc.v2(this.target.x, this.target.y);
+        } else {
+            originDirection = cc.v2(this.targetLastPosition.x - this.node.x, this.targetLastPosition.y - this.node.y);
+        }
+        var direction = originDirection.normalize();
+        var vx = direction.x * this.moveSpeed;
+        var vy = direction.y * this.moveSpeed;
+        var dis1 = originDirection.mag();
 
-// update (dt) {},
-);
+        this.node.x = this.node.x + vx * dt;
+        this.node.y = this.node.y + vy * dt;
+        var angle = direction.signAngle(cc.v2(1, 0));
+        var degree = angle / Math.PI * 180;
+        this.node.angle = -1 * degree;
+        var dis2 = cc.v2(vx * dt, vy * dt).mag();
+
+        if (dis2 >= dis1) {
+            this.node.removeFromParent();
+        }
+    },
+    onCollisionEnter: function onCollisionEnter(other, self) {
+        if (other.node == this.target) {
+            this.delegate.onHit();
+            this.node.removeFromParent();
+        }
+    }
+});
 
 cc._RF.pop();
         }

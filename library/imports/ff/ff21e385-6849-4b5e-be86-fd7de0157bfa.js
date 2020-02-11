@@ -18,119 +18,66 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        hurt: 10,
-        hurtDelta: 1, // mesured by second
-        hurtRange: -1, // -1 indicate that the tower will attack only one enmy
-        attackRange: 1000,
-        hurtType: 1, //1 indicate physical, 2 indicate magical
-        monstors: null,
+        skills: null,
+        commonSkillId: null,
+        commonSkillConfig: null,
+        commonSkillCd: null,
+        isUIShowed: false,
+        currentUI: null,
+        towerUIPrefab: cc.Prefab,
+
         canAttack: {
             get: function get() {
-                if (this._canAttack == null) {
-                    this._canAttack = true;
-                }
                 return this._canAttack;
             },
             set: function set(value) {
                 this._canAttack = value;
-                if (value == false) {
-                    var self = this;
-                    this.scheduleOnce(function () {
-                        self._canAttack = true;
-                    }, this.hurtDelta);
+            }
+        },
+        attackTimer: {
+            get: function get() {
+                return this._attackTimer;
+            },
+            set: function set(value) {
+                this._attackTimer = value;
+                if (value >= this.commonSkillCd) {
+                    this.canAttack = true;
+                    this.attackTimer = null;
                 }
             }
         },
-        bulletEffectPrefab: cc.Prefab,
-        hurtEffectPrefab: cc.Prefab,
-        bulletEffectOffset: cc.v2(0, 0),
-        currentEffect: null,
-        isUIShowed: false,
-        currentUI: null,
-        towerUIPrefab: cc.Prefab
+
+        gameMgr: null,
+        releasingSkill: null
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {
         this.node.getChildByName("touchNode").on("touchend", this.onTouchEnd, this);
+        this.gameMgr = cc.find("Canvas/gameMgrNode").getComponent("gameMgr");
     },
     start: function start() {
-        this.monstors = cc.find("Canvas/gameMgrNode").getComponent("gameMgr").alivedMonstors;
+        for (var stringSkillId in this.skills) {
+            var isCommonSkill = this.skills[stringSkillId].isCommonSkill;
+            if (isCommonSkill == true) {
+                this.commonSkillId = parseInt(stringSkillId);
+                break;
+            }
+        }
+
+        if (this.commonSkillId != null) {
+            this.canAttack = true;
+            this.commonSkillCd = this.skills[this.commonSkillId.toString()].cd;
+        }
     },
     update: function update(dt) {
-        if (this.canAttack == true && this.monstors.length > 0) {
-            for (var index in this.monstors) {
-                var oneMonstor = this.monstors[index];
-                var dis = cc.v2(oneMonstor.x - this.node.x, oneMonstor.y - this.node.y).mag();
-                if (dis <= this.attackRange) {
-                    this.attackOneMonstor(oneMonstor);
-                    break;
-                }
-            }
-        }
-    },
-    attackOneMonstor: function attackOneMonstor(oneMonstor) {
-        this.canAttack = false;
-        if (this.bulletEffectPrefab != null) {
-            var effect = cc.instantiate(this.bulletEffectPrefab);
-            effect.x = this.node.x + this.bulletEffectOffset.x;
-            effect.y = this.node.y + this.bulletEffectOffset.y;
-            var effectMgr = effect.getComponent("effectMgr");
-            effectMgr.effectType = 1;
-            if (this.hurtEffectPrefab != null) {
-                effectMgr.hurtEffectPrefab = this.hurtEffectPrefab;
-            }
-            effectMgr.target = oneMonstor;
-            effectMgr.delegate = this;
-            this.currentEffect = effect;
-        } else {
-            if (this.hurtEffectPrefab != null) {
-                var effect = cc.instantiate(this.hurtEffectPrefab);
-                var effectMgr = effect.getComponent("effectMgr");
-                effectMgr.effectType = 2;
-                effectMgr.delegate = this;
-                this.currentEffect = effect;
-            }
+        if (this.attackTimer != null) {
+            this.attackTimer += dt;
         }
 
-        var animate = this.node.getComponent(cc.Animation);
-        animate.play("attack");
-    },
-    playEffect: function playEffect() {
-        var effectType = this.currentEffect.getComponent("effectMgr").effectType;
-        if (effectType == 1) {
-            cc.find("Canvas").addChild(this.currentEffect);
-        } else if (effectType == 2) {
-            var target = this.currentEffect.getComponent("effectMgr").target;
-            target.addChild(this.currentEffect);
-        }
-    },
-    _acturalHurt: function _acturalHurt(monstor) {
-
-        if (this.hurtRange == -1) {
-            var monstorMgr = monstor.getComponent("monstorMgr");
-            monstorMgr.getHurt(this.hurt, this.hurtType);
-        } else {
-            var monstorsForHurt = [];
-            for (var index in this.monstors) {
-                var oneMonstor = this.monstors[index];
-                if (oneMonstor == monstor) {
-                    monstorsForHurt.push(oneMonstor);
-                } else {
-                    if (cc.v2(monstor.x - oneMonstor.x, monstor.y - oneMonstor.y).mag <= this.hurtRange) {
-                        monstorsForHurt.push(oneMonstor);
-                    }
-                }
-            }
-
-            if (monstorsForHurt.length > 0) {
-                for (var index in monstorsForHurt) {
-                    var oneMonstor = monstorsForHurt[index];
-                    var monstorMgr = oneMonstor.getComponent("monstorMgr");
-                    monstorMgr.getHurt(this.hurt, this.hurtType);
-                }
-            }
+        if (this.canAttack == true) {
+            this.tryToReleaseCommonSkill();
         }
     },
     onTouchEnd: function onTouchEnd(event) {
@@ -161,6 +108,90 @@ cc.Class({
                 self.isUIShowed = false;
             }).start();
         }
+    },
+    tryToReleaseCommonSkill: function tryToReleaseCommonSkill() {
+        var config = require("skillConfig")[this.commonSkillId.toString()];
+        var faction = config.faction;
+        var targetNum = config.targetNum;
+        var attackRange = config.attackRange;
+        var targets = [];
+
+        var possibleTargets = null;
+        switch (faction) {
+            case 1:
+                possibleTargets = this.gameMgr.alivedMonstors;
+                break;
+            case 2:
+                possibleTargets = this.gameMgr.towers;
+                break;
+        }
+
+        if (targetNum == -1) {
+            for (var index in possibleTargets) {
+                var element = possibleTargets[index];
+                var dis = cc.v2(element.x - this.node.x, element.y - this.node.y).mag();
+                if (dis <= attackRange) {
+                    targets.push(element);
+                }
+            }
+        } else {
+            var currentNum = 0;
+            for (var index in possibleTargets) {
+                var element = possibleTargets[index];
+                var dis = cc.v2(element.x - this.node.x, element.y - this.node.y).mag();
+                if (dis <= attackRange) {
+                    targets.push(element);
+                    currentNum += 1;
+                    if (currentNum == targetNum) {
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (targets.length > 0) {
+            this.releaseSkill(this.commonSkillId, targets);
+            this.canAttack = false;
+            this.attackTimer = 0;
+        }
+    },
+    releaseSkill: function releaseSkill(skillId, targets) {
+        var Skill = require("skill");
+        var skillObj = new Skill();
+        skillObj.id = skillId;
+        skillObj.targets = targets;
+        skillObj.owner = this.node;
+        skillObj.ownerMgr = this;
+        this.releasingSkill = skillObj;
+        skillObj.releaseSkill();
+    },
+    getTargetsInHurtRange: function getTargetsInHurtRange(givenTarget, hurtRange, faction) {
+        if (hurtRange == -1) {
+            return [givenTarget];
+        }
+
+        var possibleTargets = null;
+        switch (faction) {
+            case 1:
+                possibleTargets = this.gameMgr.alivedMonstors;
+                break;
+            case 2:
+                possibleTargets = this.gameMgr.towers;
+                break;
+        }
+
+        var results = [];
+        for (var index in possibleTargets) {
+            var element = possibleTargets[index];
+            var dis = cc.v2(element.x - givenTarget.x, element.y - givenTarget.y).mag();
+            if (dis <= hurtRange) {
+                results.push(element);
+            }
+        }
+        return results;
+    },
+    sendBullet: function sendBullet() {
+        this.releasingSkill.sendBullet();
     }
 });
 

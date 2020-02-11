@@ -14,7 +14,7 @@ var resConfig = {
         iconName: ""
     },
     "30001": {
-        prefabName: "prefabs/effect/arrow",
+        prefabName: "prefabs/bullets/arrow",
         iconName: ""
     }
 };

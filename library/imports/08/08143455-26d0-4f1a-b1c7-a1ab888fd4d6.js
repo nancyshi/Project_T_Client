@@ -127,7 +127,40 @@ cc.Class({
             }
         }
 
-        this.resesNum = monstorResIds.length + towerResIds.length;
+        //skills used for towers
+        var skillResIds = [];
+        for (var index in this.enabledTowerIds) {
+            var id = this.enabledTowerIds[index];
+            var oneTowerConfig = towerConfig[id.toString()];
+            for (var key in oneTowerConfig) {
+                var skills = oneTowerConfig[key].skills;
+                for (var k in skills) {
+                    var config = require("skillConfig")[k];
+                    var bulletResourceId = config.bulletResourceId;
+                    var hurtEffectResourceId = config.hurtEffectResourceId;
+
+                    if (bulletResourceId != "") {
+                        var isNewId = skillResIds.every(function (x) {
+                            return x != bulletResourceId;
+                        });
+                        if (isNewId == true) {
+                            skillResIds.push(bulletResourceId);
+                        }
+                    }
+
+                    if (hurtEffectResourceId != "") {
+                        var isNewId = skillResIds.every(function (x) {
+                            return x != hurtEffectResourceId;
+                        });
+                        if (isNewId == true) {
+                            skillResIds.push(hurtEffectResourceId);
+                        }
+                    }
+                }
+            }
+        }
+
+        this.resesNum = monstorResIds.length + towerResIds.length + skillResIds.length;
         this.loadedResesNum = 0;
 
         for (var index in monstorResIds) {
@@ -136,6 +169,10 @@ cc.Class({
         }
         for (var index in towerResIds) {
             var id = towerResIds[index];
+            this._loadOneRes(id);
+        }
+        for (var index in skillResIds) {
+            var id = skillResIds[index];
             this._loadOneRes(id);
         }
     },

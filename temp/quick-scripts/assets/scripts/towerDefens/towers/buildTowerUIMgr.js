@@ -82,11 +82,10 @@ cc.Class({
         tower.y = this.node.parent.y;
 
         var towerMgr = tower.getComponent("towerMgr");
-        towerMgr.hurt = towerObj.hurt;
-        towerMgr.hurtType = towerObj.hurtType;
-        towerMgr.hurtDelta = towerObj.hurtDelta;
-        towerMgr.attackRange = towerObj.attackRange;
-        towerMgr.hurtRange = towerObj.hurtRange;
+        towerMgr.skills = towerObj.skills;
+
+        var battleElementMgr = tower.getComponent("battleElementMgr");
+        battleElementMgr.hurt = towerObj.hurt;
 
         var parentNode = this.node.parent;
         this.node.parent.getComponent("towerAreaMgr").removeUI();

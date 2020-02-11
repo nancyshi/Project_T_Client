@@ -8,9 +8,9 @@ var monstorConfig = {
     "10001": {
         resId: 10001,
         maxHp: 100,
-        moveSpeed: 10,
-        magicDefense: 2,
-        physicalDefense: 0
+        moveSpeed: 100,
+        magicalDefense: 2,
+        physicalDefense: 10
     }
 };
 

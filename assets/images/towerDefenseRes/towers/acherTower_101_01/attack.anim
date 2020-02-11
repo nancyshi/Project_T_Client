@@ -58,7 +58,7 @@
   "events": [
     {
       "frame": 0.125,
-      "func": "playEffect",
+      "func": "sendBullet",
       "params": []
     }
   ]

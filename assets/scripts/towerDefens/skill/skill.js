@@ -29,8 +29,9 @@ var Skill =  cc.Class({
         id: cc.Integer,
         skillType: 1, //while 1 indicate initiative skill , and 2 is passivity skill
         hurtType: 1, //1 is physical , 2 is magical
-        target: cc.Node,
-        owner: cc.Node
+        owner: cc.Node,
+        ownerMgr: null,
+        targets: []
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -42,10 +43,12 @@ var Skill =  cc.Class({
     // },
 
     releaseSkill() {
+        var config = require("skillConfig")[this.id.toString()]
+        this.skillType = config.skillType
         if (this.skillType == 1) {
             var skillConfig = require("skillConfig")[this.id.toString()]
             var animationName = skillConfig.animationName
-            var animComp = this.owner.node.getComponent(cc.Animation)
+            var animComp = this.owner.getComponent(cc.Animation)
             if (animationName != null && animationName != "") {
                 animComp.play(animationName)
             }
@@ -67,50 +70,76 @@ var Skill =  cc.Class({
         var offsetY = skillConfig.offsetY
         var moveSpeed = skillConfig.moveSpeed
 
-        var bullet = cc.instantiate(bulletPrefab)
-        var bulletMgr = bullet.getComponent("bulletMgr")
-        bulletMgr.delegate = this
-        bulletMgr.moveSpeed = moveSpeed
-        bulletMgr.target = this.target
-
-        bullet.x = offsetX
-        bullet.y = offsetY
-        this.owner.addChild(bullet)
-
+        for (var index in this.targets) {
+            var target = this.targets[index]
+            var bullet = cc.instantiate(bulletPrefab)
+            var bulletMgr = bullet.getComponent("bulletMgr")
+            bulletMgr.delegate = this
+            bulletMgr.moveSpeed = moveSpeed
+            bulletMgr.target = target
+    
+            bullet.x = offsetX + this.owner.x
+            bullet.y = offsetY + this.owner.y
+            cc.find("Canvas").addChild(bullet)
+        }
     },
     onHit() {
-        //called when it's time to play hurt effect
         var skillConfig = require("skillConfig")[this.id.toString()]
         var hurtEffectResourceId = skillConfig.hurtEffectResourceId
-        var hurtEffectPrefab = cc.find("Canvas/resNode").getComponent("resMgr").reses[hurtEffectResourceId.toString()].prefabName
-
-        var hurtEffect = cc.instantiate(hurtEffectPrefab)
-        var offsetX = skillConfig.hurtEffectOffsetX
-        var offsetY = skillConfig.hurtEffectOffsetY
-        
-        hurtEffect.x = offsetX
-        hurtEffect.y = offsetY
-        this.target.addChild(hurtEffect)
-        
-        var animComp = hurtEffect.getComponent(cc.Animation)
-        animComp.play("getHurt")
+        if (hurtEffectResourceId != "") {
+            var hurtEffectPrefab = cc.find("Canvas/resNode").getComponent("resMgr").reses[hurtEffectResourceId.toString()].prefabName
+            for (var index in this.targets) {
+                var target = this.targets[index]
+                var hurtEffect = cc.instantiate(hurtEffectPrefab)
+                var offsetX = skillConfig.hurtEffectOffsetX
+                var offsetY = skillConfig.hurtEffectOffsetY
+                
+                hurtEffect.x = offsetX
+                hurtEffect.y = offsetY
+                target.addChild(hurtEffect)
+                
+                var animComp = hurtEffect.getComponent(cc.Animation)
+                animComp.play("getHurt")
+            }
+        }
+        else {
+            this.produceResult()
+        }
     },
     
     produceResult() {
         var skillConfig = require("skillConfig")[this.id.toString()]
         var hurtCoefficient = skillConfig.hurtCoefficient
         var additionalBuffId = skillConfig.additionalBuffId
-
+        this.hurtType = skillConfig.hurtType
         //both tower and monstor will have the ability to release skill
         //they will both have a commponent named "battleElementMgr"
         var battleElementMgr = this.owner.getComponent("battleElementMgr")
         var hurtNum = battleElementMgr.hurt * hurtCoefficient
         
-        this.target.getComponent("battleElementMgr").getHurt(hurtNum,this.hurtType)
-        this.target.getComponent("battleElementMgr").getBuff(additionalBuffId)
+        for (var index in this.targets) {
+            var target = this.targets[index]
+            var effectedTargets = this.getTargetsInHurtRange(target)
+            for (var index in effectedTargets) {
+                var oneTarget = effectedTargets[index]
+                oneTarget.getComponent("battleElementMgr").getHurt(hurtNum,this.hurtType)
+                oneTarget.getComponent("battleElementMgr").getBuff(additionalBuffId)
+            }
+        }
     }, 
 
-
+    getTargetsInHurtRange(givenTarget) {
+        var hurtRange = require("skillConfig")[this.id.toString()].hurtRange
+        var faction = require("skillConfig")[this.id.toString()].faction
+        var targets = this.ownerMgr.getTargetsInHurtRange(givenTarget,hurtRange,faction)
+        if (targets.length > 0) {
+            return targets
+        }
+        else {
+            cc.error("NO TARGET IN HURT RANGE")
+            return null
+        }
+    }
     // update (dt) {},
 });
 

@@ -37,10 +37,13 @@
       },
       {
         "__id__": 14
+      },
+      {
+        "__id__": 15
       }
     ],
     "_prefab": {
-      "__id__": 15
+      "__id__": 16
     },
     "_opacity": 255,
     "_color": {
@@ -306,7 +309,7 @@
   {
     "__type__": "cc.Node",
     "_name": "2",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 1
     },
@@ -506,27 +509,34 @@
       "__id__": 1
     },
     "_enabled": true,
-    "hurt": 10,
-    "hurtDelta": 1,
-    "hurtRange": -1,
-    "attackRange": 300,
-    "hurtType": 1,
-    "monstors": null,
-    "bulletEffectPrefab": {
-      "__uuid__": "df327cc4-0da9-4b81-8824-c71072fdc790"
-    },
-    "hurtEffectPrefab": null,
-    "bulletEffectOffset": {
-      "__type__": "cc.Vec2",
-      "x": 8.34,
-      "y": 99.34
-    },
-    "currentEffect": null,
+    "skills": [],
+    "commonSkillId": null,
+    "commonSkillConfig": null,
+    "commonSkillCd": null,
     "isUIShowed": false,
     "currentUI": null,
     "towerUIPrefab": {
       "__uuid__": "2070e716-8d3b-4e52-ab8b-01efc7f5f11b"
     },
+    "gameMgr": null,
+    "_id": ""
+  },
+  {
+    "__type__": "1cf0djjBotMpZz+ralkYaqI",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "maxHp": 100,
+    "hurt": 100,
+    "physicalDefense": 100,
+    "magicalDefense": 200,
+    "hpBar": null,
+    "isAutoHideHpBar": false,
+    "hpBarContinueTime": 3,
+    "delegate": null,
     "_id": ""
   },
   {

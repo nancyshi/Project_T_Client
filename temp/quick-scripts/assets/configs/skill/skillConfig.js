@@ -6,12 +6,19 @@ cc._RF.push(module, '0a95f+9eOtLgb0CFOdb2K5l', 'skillConfig', __filename);
 
 var skillConfig = {
     "20001001": {
+        skillType: 1,
+        attackRange: 1000,
+        faction: 1, //1 is enemy , 2 is self's faction
+        targetNum: 1, //-1 is all target of the range
+        hurtRange: -1, //-1 is the target
+        hurtType: 1, //1 is physical , 2 is magical
+
         animationName: "attack",
         bulletResourceId: 30001,
-        moveSpeed: 10,
-        offsetX: 0,
-        offsetY: 0,
-        hurtEffectResourceId: 40001,
+        moveSpeed: 1000,
+        offsetX: 17.583,
+        offsetY: 93.278,
+        hurtEffectResourceId: "",
         hurtEffectOffsetX: 0,
         hurtEffectOffsetY: 0,
         hurtCoefficient: 1.0,
