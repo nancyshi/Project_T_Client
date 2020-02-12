@@ -46,6 +46,7 @@ cc.Class({
     start: function start() {
         var manager = cc.director.getCollisionManager();
         manager.enabled = true;
+        this.targetLastPosition = cc.v2(this.target.x, this.target.y);
     },
     update: function update(dt) {
         var originDirection = null;
@@ -55,6 +56,7 @@ cc.Class({
         } else {
             originDirection = cc.v2(this.targetLastPosition.x - this.node.x, this.targetLastPosition.y - this.node.y);
         }
+
         var direction = originDirection.normalize();
         var vx = direction.x * this.moveSpeed;
         var vy = direction.y * this.moveSpeed;
